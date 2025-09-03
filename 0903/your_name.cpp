@@ -15,7 +15,7 @@ int main() {
     cin >> word1 >> word2;
     cout << "You entered: " << word1 << " and " << word2 << endl;
 
-    string combined = word1 + " and " + word2;
+    string combined = word1 + " & " + word2;
     cout << "Combined: " << combined << endl;
 
     return 0;

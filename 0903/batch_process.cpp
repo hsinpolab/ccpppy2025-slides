@@ -7,7 +7,7 @@ int main() {
     ifstream fin("summands3.txt");
     cout << "I am opening the file summands3.txt for input" << endl;
 
-    ofstream fout("sums3.txt");
+    ofstream fout("sums3.txt"); // fout = f + out = file + output
     cout << "I am opening the file sum3.txt for output" << endl;
 
     cout << "I am reading two integers and summing" << endl;

@@ -47,7 +47,7 @@ int main() {
         + 2 * num6
         + 1 * num7;
     
-    if ((checksum +  check) % 10 == 0) {
+    if ((checksum + check) % 10 == 0) {
         cout << "correct national ID" << endl;
     }
     else {
