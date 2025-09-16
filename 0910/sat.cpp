@@ -27,7 +27,7 @@ int main() {
             if (guess[i] == 'C') c++; 
             if (guess[i] == 'D') d++; 
         }
-        if (a + b + c + d != 4) {
+        if (a * b * c * d != 1) {
             cout << "Not a permutation of ABCD.  Try again." << endl;
             continue;
         }
