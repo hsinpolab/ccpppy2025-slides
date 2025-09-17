@@ -3,10 +3,10 @@
 using namespace std;
 
 int main() {
-    float a = -1;
-    float b = -1;
-    float c = -1;
-    for (int n = 0; n < 200; n++) {
+    double a = 1;
+    double b = 1;
+    double c = 1;
+    for (int n = 0; n < 1500; n++) {
         c = a + b;
         a = b;
         b = c;
