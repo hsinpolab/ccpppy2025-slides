@@ -8,7 +8,7 @@ int main() {
     for (int i = 0; i < 100; i++) {
         CocoMelon[i] = i;
     }
-    PrefixSum[0] = 0;
+    PrefixSum[0] = 0; // is this line necessary?
     for (int i = 1; i < 100; i++) {
         PrefixSum[i] = PrefixSum[i-1] + CocoMelon[i];
     }
