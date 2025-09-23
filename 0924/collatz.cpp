@@ -17,6 +17,7 @@ int main () {
         step++;
         cout << n << " at step " << step << endl;
     }
+
     return 0;
 }
 

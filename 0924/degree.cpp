@@ -1,30 +1,28 @@
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <string>
 using namespace std;
 
-int main() {
-    ifstream fin("com-amazon.ungraph.txt");
-    if (!fin) { // check if file can be opened
-        cerr << "Cannot open file." << endl;
-        return 1;
-    }
-
+void ignore_comment_lines(ifstream &fin) {
+    // ignore the first four lines (if we know it's four)
     string line;
     getline(fin, line);
     getline(fin, line);
     getline(fin, line);
-    getline(fin, line); // ignore first four lines
+    getline(fin, line);
+}
+
+int main() {
+    ifstream fin("com-amazon.ungraph.txt");
+    ignore_comment_lines(fin);
 
     int v, a, b;
-    cin >> v;
     int degree = 0;
-    while (fin >> a >> b) {
-        if (a == v || b == v) degree++;
-    }
+    cin >> v;
+    while (fin >> a >> b) if (a == v || b == v) degree++;
     cout << degree << endl;
+
     return 0;
 }
 

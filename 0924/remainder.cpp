@@ -19,8 +19,11 @@ int main() {
         if (check_congruent(x, m1, r1) && check_congruent(x, m2, r2)) {
             break;
         }
+        cout << " not " << x;
+        if (x % 10 == 9) cout << endl;
     }
 
+    cout << endl;
     cout << "x = " << x << endl;
     return 0;
 }
