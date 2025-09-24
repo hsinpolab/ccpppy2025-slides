@@ -18,7 +18,7 @@ void DarkerPhoto(float ph[50][100]) {
     for (int y = 0; y < 50; y++) { for (int x = 0; x < 100; x++) { ph[y][x] *= 0.9; } }
 }
 void AddNoise(float ph[50][100]) {
-    for (int y = 0; y < 50; y++) { for (int x = 0; x < 100; x++) { ph[y][x] += 100 * (rand() % 10000 == 1); } }
+    for (int y = 0; y < 50; y++) { for (int x = 0; x < 100; x++) { ph[y][x] += 100 * (rand() % 5000 == 1); } }
 }
 void Drifting(float ph[50][100], float newph[50][100]) {
     for (int y = 0; y < 50; y++) {

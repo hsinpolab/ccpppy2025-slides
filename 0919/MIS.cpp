@@ -31,9 +31,9 @@ void BiasedFlipOne(float ph[50][100]) {
 int main() {
     float magnet[50][100];
     InitializePhoto(magnet);
-    for (int repeat = 0; repeat < 100; repeat++) {
+    for (int repeat = 0; repeat < 1000; repeat++) {
         BiasedFlipOne(magnet);
         PrintPhoto(magnet);
-        usleep(100000);
+        usleep(10000);
     }
 }

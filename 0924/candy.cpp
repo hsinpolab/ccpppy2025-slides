@@ -6,7 +6,7 @@ void birthday(int c) {
     c += 1;
 }
 
-void birthday_ref(int &c) {
+void birthday_ref(int &c) { // pass by reference
     c += 1;
 }
 
@@ -21,7 +21,7 @@ int main () {
     for (int i = 0; i < 100; ++i) {
         candy[i] = i;
     }
-
+    
     birthday(candy[0]);
     cout << candy[0] << endl; // still 0, but why?
 
@@ -30,5 +30,7 @@ int main () {
 
     christmas(candy);
     cout << candy[0] << endl; // now 2
+
+    cout << candy << endl; // address of the array
 }
 

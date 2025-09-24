@@ -29,11 +29,12 @@ void BiasedFlipOne(float ph[50][100]) {
 }
 
 int main() {
+    srand(12346);
     float magnet[50][100];
     InitializePhoto(magnet);
     for (int repeat = 0; repeat < 1e8; repeat++) {
         BiasedFlipOne(magnet);
-        if (repeat % int(1e2) == 0) {
+        if (repeat % int(1e5) == 0) {
             PrintPhoto(magnet);
             usleep(100000);
         }

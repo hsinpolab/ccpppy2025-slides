@@ -9,5 +9,6 @@ void sun_shine() {
 int main () {
     int earth_rotation = 1;
     sun_shine();
+    cout << earth_rotation << endl;
 }
 

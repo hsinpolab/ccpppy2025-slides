@@ -22,7 +22,7 @@ int main() {
     cin >> v;
     while (fin >> a >> b) if (a == v || b == v) degree++;
     cout << degree << endl;
-
+    
     return 0;
 }
 

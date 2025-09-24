@@ -15,9 +15,9 @@ int main () {
     while (n != 1) {
         n = next_step(n);
         step++;
-        cout << n << " at step " << step << endl;
+        // cout << n << " at step " << step << endl;
     }
-
+    cout << step << endl;
     return 0;
 }
 

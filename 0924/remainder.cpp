@@ -15,7 +15,7 @@ int main() {
     cin >> varname >> percent >> m2 >> equalsign >> r2;
 
     // try all numbers
-    for (x = 0; x < m1 * m2; x++) {
+    for (x = 0; ; x++) {
         if (check_congruent(x, m1, r1) && check_congruent(x, m2, r2)) {
             break;
         }
