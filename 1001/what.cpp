@@ -7,12 +7,12 @@ int main() {
     
     cout << A << endl;
     cout << &A[0] << endl;
-    cout << &0[A] << endl;
+    cout << &false[A] << endl;
     cout << endl;
 
     cout << A + 1 << endl;
     cout << &A[1] << endl;
-    cout << &1[A] << endl;
+    cout << &true[A] << endl;
     cout << endl;
 
     cout << A + 2 << endl;

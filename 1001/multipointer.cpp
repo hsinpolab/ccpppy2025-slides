@@ -56,6 +56,7 @@ int main() {
     cout << "*pointer3: " << *pointer3 << endl;
     cout << endl;
 
+    ++(*pointer2); // change value by pointer
     *pointer3 = *pointer1 * *pointer2; // change value by pointer
     cout << "*pointer3 = *pointer1 * *pointer2;" << endl;
     cout << "N: " << N << endl;
