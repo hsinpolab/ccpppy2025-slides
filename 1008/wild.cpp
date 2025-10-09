@@ -226,7 +226,7 @@ int main() {
             else i++;
         }
 
-        if (day % 100 == 0) VisualizeField(day);
+        if (day % 10 == 0) VisualizeField(day);
 
         // Remove dead Rabbit
         for (int i = 0; i < nRabbit;) {
