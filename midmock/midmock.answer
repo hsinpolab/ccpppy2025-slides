@@ -1,0 +1,200 @@
+\hskip 0pt plus1em[1]
+\hskip 0pt plus1em[2]
+\hskip 0pt plus1em[3]
+\hskip 0pt plus1em[4]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}A}; 
+\hskip 0pt plus1em[5]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}H}; 
+\hskip 0pt plus1em[6]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}K}; 
+\hskip 0pt plus1em[7]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}M}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}O}; 
+\hskip 0pt plus1em[8]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}Q}; 
+\hskip 0pt plus1em[9]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}T}; 
+\hskip 0pt plus1em[10]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}X}; 
+\hskip 0pt plus1em[11]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}B}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}C}; 
+\hskip 0pt plus1em[12]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}G}; 
+\hskip 0pt plus1em[13]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}I}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}L}; 
+\hskip 0pt plus1em[14]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}Q}; 
+\hskip 0pt plus1em[15]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}R}; 
+\hskip 0pt plus1em[16]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}W}; 
+\hskip 0pt plus1em[17]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}B}; 
+\hskip 0pt plus1em[18]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}E}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}F}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}H}; 
+\hskip 0pt plus1em[19]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}13}; 
+\hskip 0pt plus1em[20]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}N}; 
+\hskip 0pt plus1em[21]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}P}; 
+\hskip 0pt plus1em[22]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}T}; 
+\hskip 0pt plus1em[23]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}120121122}; 
+\hskip 0pt plus1em[24]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}888990}; 
+\hskip 0pt plus1em[25]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}Y}; 
+\hskip 0pt plus1em[26]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}0000010001010111}; 
+\hskip 0pt plus1em[27]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}1111111111110011}; 
+\hskip 0pt plus1em[28]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}B}; 
+\hskip 0pt plus1em[29]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}H}; 
+\hskip 0pt plus1em[30]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}J}; 
+\hskip 0pt plus1em[31]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}O}; 
+\hskip 0pt plus1em[32]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}0 10000101 00000000000000000000000}; 
+\hskip 0pt plus1em[33]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}1 01111011 00000000000000000000000}; 
+\hskip 0pt plus1em[34]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}0 10000000 11000000000000000000000}; 
+\hskip 0pt plus1em[35]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}T}; 
+\hskip 0pt plus1em[36]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}W}; 
+\hskip 0pt plus1em[37]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}24}; 
+\hskip 0pt plus1em[38]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}F}; 
+\hskip 0pt plus1em[39]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}K}; 
+\hskip 0pt plus1em[40]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}O}; 
+\hskip 0pt plus1em[41]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}R}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}S}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}T}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}U}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}V}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}W}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}X}; 
+\hskip 0pt plus1em[42]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}55577910}; 
+\hskip 0pt plus1em[43]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}if (n == int(sqrt(n)) * int(sqrt(n))) return true;}; 
+\hskip 0pt plus1em[44]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}x + y + z - max3(x, y, z) + max3(-x, -y, -z);}; 
+\hskip 0pt plus1em[45]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}weight * 10000. / height / height}; 
+\hskip 0pt plus1em[46]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}A}; 
+\hskip 0pt plus1em[47]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}F}; 
+\hskip 0pt plus1em[48]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}for (...) \{for (...) \{...\}\}}; 
+\hskip 0pt plus1em[49]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}G}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}I}; 
+\hskip 0pt plus1em[50]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}K}; 
+\hskip 0pt plus1em[51]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}R}; 
+\hskip 0pt plus1em[52]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}T}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}V}; 
+\hskip 0pt plus1em[53]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}W}; 
+\hskip 0pt plus1em[54]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}A}; 
+\hskip 0pt plus1em[55]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}F}; 
+\hskip 0pt plus1em[56]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}I}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}K}; 
+\hskip 0pt plus1em[57]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}P}; 
+\hskip 0pt plus1em[58]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}R}; 
+\hskip 0pt plus1em[59]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}T}; 
+\hskip 0pt plus1em[60]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}A}; 
+\hskip 0pt plus1em[61]
+\hskip 0pt plus1em[62]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}E}; 
+\hskip 0pt plus1em[63]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}F}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}H}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}K}; 
+\hskip 0pt plus1em[64]
+\hskip 0pt plus1em[65]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}52}; 
+\hskip 0pt plus1em[66]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}54}; 
+\hskip 0pt plus1em[67]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}542}; 
+\hskip 0pt plus1em[68]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}523421}; 
+\hskip 0pt plus1em[69]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}1}; 
+\hskip 0pt plus1em[70]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}2}; 
+\hskip 0pt plus1em[71]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}01}; 
+\hskip 0pt plus1em[72]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}00}; 
+\hskip 0pt plus1em[73]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}int (*a)[10];}; 
+\hskip 0pt plus1em[74]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}M}; 
+\hskip 0pt plus1em[75]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}R}; 
+\hskip 0pt plus1em[76]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}T}; 
+\hskip 0pt plus1em[77]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}123}; 
+\hskip 0pt plus1em[78]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}213}; 
+\hskip 0pt plus1em[79]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}132}; 
+\hskip 0pt plus1em[80]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}231}; 
+\hskip 0pt plus1em[81]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}312}; 
+\hskip 0pt plus1em[82]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}3}; 
+\hskip 0pt plus1em[83]
+\hskip 0pt plus1em[84]
+\hskip 0pt plus1em[85]
+\hskip 0pt plus1em[86]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}W}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}X}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}Y}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}Z}; 
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}A}; 
+\hskip 0pt plus1em[87]
+\hskip 0pt plus1em[88]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}E}; 
+\hskip 0pt plus1em[89]
+\hskip 0pt plus1em[90]
+\hskip 0pt plus1em[91]
+\hskip 0pt plus1em[92]
+\hskip 0pt plus1em[93]
+\hskip 0pt plus1em[94]
+\hskip 0pt plus1em[95]
+\hskip 0pt plus1em[96]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}S}; 
+\hskip 0pt plus1em[97]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}I}; 
+\hskip 0pt plus1em[98]
+ \tikz \node {\fontsize {24pt}{0}\fontspec {Comic Sans MS}(A, 0, c); (A, c, 100); (A, 0, 100);}; 

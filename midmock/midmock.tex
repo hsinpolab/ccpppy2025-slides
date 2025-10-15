@@ -1,0 +1,1049 @@
+% !TEX encoding = UTF-8
+% !TEX program = lualatex
+
+\documentclass[a4paper]{article}
+
+\usepackage[left=1.5cm, right=1.5cm, top=1cm, bottom=2cm]{geometry}
+
+\usepackage{mathtools, amssymb}
+
+\usepackage{emoji}
+    \setmainfont{Noto Serif}
+    \setsansfont{Noto Sans}
+    \setmonofont{Noto Sans Mono}
+
+\usepackage{tikz}
+
+\tikzset{
+    every picture/.style={baseline=(current bounding box)},
+    code block/.style={
+        fill=gray!10, align=left, inner ysep=0pt,
+        font={
+            \hskip-20pt
+            \ttfamily
+            \catcode32=12 \catcode13=13
+        }
+    },
+    code block right/.style={
+        overlay, shift={(18, 0.3)}, 
+        every node/.style={code block, below left}
+    }
+}
+\newcounter{p}
+\def\Problem{
+    \stepcounter{p}[\arabic{p}]
+    \hskip0pt plus1em
+    \immediate\write\answer{\hskip0pt plus1em[\arabic{p}]}%
+}
+\newcounter{c}
+\def\yes{\no\writeanswer{\Alph c}}
+\def\no{%
+    \hskip0pt plus10em
+    \stepcounter c\ifnum\value c=27\setcounter c1\fi(\Alph c)\nobreak\ 
+}
+\def\writeanswer#1{\immediate\write\answer{
+    \noexpand\tikz\noexpand\node
+    {\noexpand\fontsize{24pt}{0}\fontspec{Comic Sans MS}#1};
+}}
+\def\blank#1{
+    \underline{\phantom{#1}}
+    \writeanswer{#1}%
+}
+\newwrite\answer
+\immediate\openout\answer=\jobname.answer
+
+\begin{document}
+
+\parskip 1em
+\parindent 0pt
+
+\catcode`\#=12
+\catcode`\%=12
+\catcode`\^=12
+\catcode`\&=12
+\catcode`\_=12
+\catcode`\'=13 \def'{\rmfamily}
+\catcode`\`=13 \def`{\ttfamily}
+\catcode13=13 \def
+{\\} \catcode13=5\relax
+
+\fontspec{Noto Serif TC}
+
+\section*{Computer Programming - Midterm Mock Exam - Question Sheet}
+
+考試時間 Test time 15:50 pm to 18:10 pm; 2.5 hours.
+以教室後方時鐘為準 Using the clock at the back of the classroom as official time.
+在答案卷上作答 Answer on the answer sheet.
+每題一分 One point per problem.
+全對才給分 No partial credit.
+不倒扣 No penalty for wrong answers.
+禁止外部資源（比照學測、分科） No external resources, like TOEFL.
+
+\rmfamily
+
+\section{Program Meta}
+
+\tikz [code block right] \node {
+    8888888888888888888888888888888888888888
+    8888888888888888888889888888888888888888
+    8888888888888888888888888888888888888888
+    8888888888888888888888888988888888888888
+    8888888888888888888888888888888888888888
+    8888888888888888888888888888888888888888
+    8888888888888888888888888888888888888888
+    8888888888888888888888888888888888888888
+    8838888888888888888888888888888888888888
+    8888888888888888888888888888888888888888
+};
+
+\Problem Find a hidden `9'.
+
+\Problem Find another hidden `9'.
+
+\Problem Find the other hidden number.
+
+\hangindent-10cm \hangafter-9
+\Problem C is invented in
+\yes 1972
+\no 1982
+\no 1992
+\no 2002
+
+\hangindent-10cm \hangafter-9
+\Problem C++ is invented in
+\no 1953
+\no 1963
+\no 1973
+\yes 1983
+
+\tikz [code block right] \node {
+    \#include <iostream>
+    using namespace std;
+    int main() \{
+        cout << "hello"
+             << "ntu";
+    \}
+};
+
+\hangindent-5cm \hangafter-9
+\Problem The code to the right outputs
+\no `he11ontu'
+\no `hell0ntu'
+\yes `hellontu'
+
+\hangindent-5cm \hangafter-9
+\Problem What if we `cout << "hello" "ntu";'?
+Select two correct answers.
+\no It is a syntax error.
+\yes It outputs `hellontu'.
+\no It outputs `hello ntu'.
+\yes String literals are concatenated.
+
+\hangindent-5cm \hangafter-1
+\Problem The purpose of using namespace `std' is to
+\no follow the C++26 standard for variable names
+\yes access the objects without repeating the prefix
+\no follow the latest C++ standard for naming conventions
+
+\Problem For a beginner who just finished the `hello world' program,
+a good next step is to write
+\no a `hello world' program in python and cython
+\yes a program that takes two strings and prints them
+\no a program that can draw Hilbert curve using turtle
+
+\Problem `#include <iostream>' includes
+\no the entire C++ standard library
+\no the implementation of `cout' and `cin'
+\yes a header file that help you read from keyboard
+\no the interface to file-in and file-out operations
+
+\tikz [code block right] \node {
+    int main (int argc, char *argv[]) \{
+        return 0;
+    \}
+};
+
+\hangindent-8cm \hangafter-3
+\Problem Which two are correct about `main'?
+\no It should always return `0'.
+\no It is the only function allowed in a C++ program.
+\yes It is special in that you cannot call it recursively.
+\yes For `g++-14', `argv' may contain things like `-o' and `-Wall'.
+
+\tikz [code block right] \node {
+    g++-14 -Ofast -Wall option_pricing.c -o op
+    op <<< "100 0.05 0.2 1 100"
+};
+
+\hangindent-10cm \hangafter-2
+\Problem Which one is incorrect regarding these terminal commands?
+\no `-o op' specifies the output file name.
+\no `g++-14' refers to the compiler developed by GNU.
+\no `-Wall' turns on some warnings that sometimes helps finding bugs.
+\yes `option_pricing.c' is a C file, so `g++' cannot possibly compile it.
+\no `-Ofast' is an optimization flag; it tries to make the program faster.
+
+\Problem Same as above, choose all incorrect statements.
+\yes `<<<' suggests that `op' will `cout' something.
+\no To post-process the output of `op', we can use `|'
+\no If something goes wrong, use `code option_pricing.c' to edit.
+\yes `100 0.05 0.2 1 100' will become `argv' in the `main' function
+\no If `<<<' is replaced by `<<', it suggests that `op' will `cin' something.
+
+\Problem What command line tools outputs
+`00000000  cf fa ed fe 07 00 00 01  03 00 00 00 02 00 00 00  |................|'
+\no cat
+\no vim
+\no touch
+\yes hexdump
+
+\Problem What does the command line tool `grep' do?
+\yes It searches for matching text.
+\no It visualizes data with ASCII art.
+\no It compiles `Go representation' code.
+\no It grabs and prints the environment variables.
+
+\Problem What does command line command `cd' stands for?
+\no clear display
+\yes change directory
+\no create dictionary
+\no compile definition
+
+\section{Variables and Types}
+
+\Problem A shadowed variable
+\no is not properly initialized
+\no is highlighted in the text editor
+\yes shares the same name with another
+\no is never highlighted in the text editor
+\no is an implicit variable created by the compiler
+
+\Problem Which are valid variable names?
+\yes `variablename'
+\yes `VariableName'
+\no `*variablename'
+\yes `_variablename'
+\no `0variablename'
+
+\Problem What is `date' after `float date = 2025 / 10 / 15;'?
+\blank{13}
+
+\Problem What is the range of $32$-bit signed integer?
+\no $0$ to $2\sp{31}$
+\no $0$ to $2\sp{32}$
+\no $0$ to $2\sp{32} - 1$
+\no $-2\sp{31}$ to $2\sp{31}$
+\yes $-2\sp{31}$ to $2\sp{31} - 1$
+
+\Problem What is the largest `n' such that
+`signed char fibonacci(int n)' does not overflow,
+with the initial condition that `fibonacci(2)' is `2'.
+\no 9
+\yes 10
+\no 11
+\no 12
+
+\Problem Regarding the lengths of variable names,
+what should we, the programmer, keep in mind?
+\no Longer names makes the compiler slower.
+\yes Longer names makes the program clearer.
+\no Shorter names makes the compiler safer.
+\no Shorter names makes the program faster.  
+
+\Problem \verb"cout << int('c') << int('b');" outputs `9998'.\\
+Accordingly, \verb"cout << int('x') << int('y') << int('z');"
+outputs \blank{120121122}
+
+\Problem \verb"cout << int('X') << int('Y') << int('Z');"
+outputs \blank{888990}
+
+\Problem What is camel case?
+\no A `switch' statement without `break'.
+\no The default branch of an `if' statement.
+\yes Capitalizing the first letter of each word.
+\no A functional wrapper protecting camel functions.
+
+\Problem The binary representation of `int16_t a = 1111' is
+\blank{0000010001010111}
+
+\Problem The binary representation of `int16_t a = -12' is
+\blank{1111111111110011}
+
+\Problem How many bytes of memory does `int16_t A[100000];' need?
+\no 100000
+\yes 200000
+\no 400000
+\no 800000
+\no 1600000
+
+\Problem `float' is
+\no always 16-bits
+\no sometimes 16-bits
+\yes at least 32-bits
+\no at most 32-bits
+
+\tikz [code block right] \node {
+    00111111100000000000000000000000 = 1
+    01000000000000000000000000000000 = 2
+    01000000010000000000000000000000 = 3
+    01000000100000000000000000000000 = 4
+    01000000101000000000000000000000 = 5
+    01000000110000000000000000000000 = 6
+    01000000111000000000000000000000 = 7
+    01000001000000000000000000000000 = 8
+    01000001000100000000000000000000 = 9
+    01000001001000000000000000000000 = 10
+};
+
+\hangindent-9cm \hangafter-9
+\Problem To the right are some floating-point numbers
+and their binary representations.
+What standard is that?
+\yes IEEE 754
+\no IEEE 768
+\no IEEE 3.14
+\no IEEE 802.11
+
+\hangindent-9cm \hangafter-9
+\Problem How much precision is that?
+\no half-precision
+\yes single-precision
+\no double-precision
+\no quadruple-precision
+
+\hangindent-10cm \hangafter-9
+\Problem What is the binary representation of `64'?
+\blank{0 10000101 00000000000000000000000}
+
+\Problem What is the binary representation of `-0.0625'?
+\blank{1 01111011 00000000000000000000000}
+
+\Problem What is the binary representation of `3.5'?
+\blank{0 10000000 11000000000000000000000}
+
+\Problem In the range of `int', `1010 + 1020 + 1030 + 1040' is
+\no `5000'
+\no `6174'
+\yes `4100'
+\no overflow
+
+\Problem Which of the following is the most common way to define constant `PI'
+to the precision of 32-bit `float`?
+\no `float PI = 3.14;'
+\yes `float PI = 3.1415927;'
+\no `float PI = 3.1415926535 8979323846;'
+\no `float PI = 3.
+1415926535
+8979323846
+2643383279
+5028841971
+6939937510
+5820974944
+5923078164
+0628620899
+8628034825
+3421170679;'
+
+\section{Operators and Arithmetic}
+
+\Problem What is `3 << 3'?
+\blank{24}
+
+\Problem What is \verb"'x' ^ 'X'"?
+\no 0
+\no 1
+\no 2
+\no 4
+\no 8
+\no 16
+\yes 32
+\no 64
+\no 128
+\no 256
+
+\Problem How to check if `n' is a multiple of 17?
+\no `n / 17 == 0'
+\yes `n % 17 == 0'
+\no `n // 17 == 0'
+\no `n %% 17 == 0'
+
+\Problem What happens after `b += a;'?
+\no `a' increases by `b'
+\yes `b' increases by `a'
+\no `a' becomes positive `b'
+\no `b' becomes positive `a'
+
+\Problem If `int a = 3, b = 2;', select all that compile.
+\yes `cout << a + b';
+\yes `cout << a + + b';
+\yes `cout << a ++ + b';
+\yes `cout << a + ++ b';
+\yes `cout << a ++ + + b';
+\yes `cout << a + + ++ b';
+\yes `cout << a ++ + ++ b';
+
+\Problem What is the overall output of the choices above
+(after removing choices that do not compile)?
+\blank{55577910}
+
+\tikz [code block right] \node {
+    bool isSquare (int n) \{
+        // your code here
+        // your code here
+        return false;
+    \}
+};
+
+\hangindent-6cm \hangafter-9
+\Problem Finish this function that checks whether `n' is a perfect square.
+You can assume that `n' is between `0' and `100'. \\
+\blank{if (n == int(sqrt(n)) * int(sqrt(n))) return true;}
+
+\hangindent-6cm \hangafter-2
+\Problem Use this function `int max3(int a, int b, int c);'
+to express the medium of `int x, y, z;'.
+(No sorting because it is not an array.)
+\blank{x + y + z - max3(x, y, z) + max3(-x, -y, -z);}
+
+\tikz [code block right] \node {
+    cout << "Height centimeters?";
+    cin >> height;
+    cout << "Weight in kilograms?";
+    cin >> weight;
+    cout << "BMI is " << /*your code here*/;
+};
+
+\hangindent-10cm \hangafter-9
+\Problem Body mass index is the quotient of
+weight in kilograms and height in meters squared.
+Complete the code.
+\blank{weight * 10000. / height / height}
+
+\hangindent-10cm \hangafter-1
+\Problem Select all that are true.
+\no `pn -> n' makes `pn' a pointer to `n'.
+\no `A => B' asserts that `B' is a derived class of `A'.
+\yes `a - - b' is equal to `a + + b' for integers `a' and `b'.
+\no `(a * b) * c' must equal to `a * (b * c)' for `float a, b, c'
+if there is no overflowing or underflowing.
+
+\Problem What is the most readable yet correct way to assign 4 percent of 25 to `neo'?
+\no `float neo = 4\% * 25;'
+\no `float neo = 25\% * 4;'
+\no `float neo = 0.05 * 25;' 
+\yes `float neo = 4 / 100. * 25;'
+
+\section{Flow Control}
+
+\tikz [code block right] \node {
+    1 1 1 1
+    1 2 3
+    1 3
+    1
+};
+
+\hangindent-3cm \hangafter-9
+\Problem To the right is the Pascale triangle.
+For a given input `n', output the first `n' rows of
+the Pascal triangle in the same format.
+Except that all numbers are `% 3';
+\blank{for (...) \{for (...) \{...\}\}}
+
+\hangindent-3cm \hangafter-1
+\Problem Select true statements.
+\yes `for(;;)' is an infinite loop.
+\no `for(ture)' is an infinite loop.
+\yes `while(1)' is an infinite loop.
+\no `while(2)' cannot be stopped by `break'.
+
+\Problem Select true statements.
+\yes `break' will break the inner-most loop.
+\no `continue' will restart the outer-most loop.
+\no `fbreak' will break the inner-most for-loop.
+\no `wbreak' will break the outer-most while-loop.
+
+\tikz [code block right] \node {
+    float f = 0;
+    float dfdt = 1;
+    float dt = 1e-3;
+    for (float t = 0; t < 10; t += dt) \{
+        float ddfddt = -f;
+        dfdt += ddfddt * dt;
+        f += dfdt * dt;
+    \}
+};
+
+\hangindent-9cm \hangafter-9
+\Problem Some numerical ODE code is presented to the right.
+What is the equation being solved?
+\no $f\sp{\prime} = f$
+\no $f\sp{\prime\prime} = f$
+\no $f\sp{\prime} = -f$
+\yes $f\sp{\prime\prime} = -f$
+
+\hangindent-9cm \hangafter-9
+\Problem Select the impliedinitial conditions.
+\no $f(1) = 0$
+\yes $f(0) = 0$
+\no $f\sp\prime(0) = 0$
+\yes $f\sp\prime(0) = 1$
+
+\hangindent-9cm \hangafter-2
+\Problem Select all that apply.
+\yes In industry, there are better methods.
+\no `1e3' and `0x1e3' are of the same type.
+\no The loop runs for about 100000 iterations.
+\no `t' is casted into an `int' before comparing to `10'.
+
+\tikz [code block right] \node {
+    int S = 0;
+    for (int i = 0; i < 100000000; i++) \{
+        if (rand() < 0.003) \{ S++; \}
+    \}
+};
+
+\hangindent-9cm \hangafter-9
+\Problem After the loop to the right, with high probability,
+`S' is closest to
+\yes 300
+\no 3000
+\no 30000
+\no 300000
+
+\hangindent-9cm \hangafter-1
+\Problem Recall that modern CPUs have frequency ranging from 1 to 5 GHz.
+How long does it take to run the loop in the previous question?
+(Assuming no flags like `-Ofast')
+\no about 1--10 microseconds
+\yes about 1--10 seconds
+\no about 1--10 days
+\no about 1--10 years
+
+
+\section{Arrays}
+
+\Problem What does `int A[10][20] = \{\};' do?  Select all that apply.
+\yes It sets all 200 entries to zero.
+\no It is faster than `int A[10][20]';
+\yes It allocates some space for 200 integers.
+\no It needs some space for 10 pointers to integers.
+
+\Problem Declared as `int A[100];' the type of `A' is best described as
+\no an array
+\no an integer array
+\no an array of length 100
+\yes an array of 100 integers
+
+\Problem Which one sums all elements of `A'?
+\no \tikz [baseline=(current bounding box)] \node [code block] {
+    for(i = 1; i <= 100; i++)
+        sum += A[i];
+};
+\yes \tikz [baseline=(current bounding box)] \node [code block] {
+    for(i = 99; i >= 0; --i)
+        sum += A[i];
+};
+\no \tikz [baseline=(current bounding box)] \node [code block] {
+    for(i = 1; i < 100; ++i)
+        sum =+ A[i];
+};
+
+\tikz [code block right] \node {
+    int A[10] = \{/*hidden*/\};
+    int max0 = 0;
+    for (int j = 0; j < 10; j++) \{
+        max0 = max0 < A[j] ? max0 : A[j];
+    \}
+};
+
+\hangindent-9cm \hangafter-9
+\Problem When the loop ends, `max0' is
+\yes `0' if all `A[j]' are positive
+\no the maximum of an integer array `A'
+\no `inf' if `A' contains negative numbers
+\no undeclared if the array `A' is not initialized 
+
+\hangindent-9cm \hangafter-2
+\Problem When the loop ends, `j' is
+\no 0
+\no 9
+\no 10
+\yes not usable, as `j' is local to the loop
+
+\Problem Joseph wants to solve heat equation 
+$\displaystyle\frac{du}{dt} = \frac{d\sp2u}{dx\sp2} + \frac{d\sp2u}{dy\sp2}$
+using finite element method.
+What seems to be wrong with his code?
+\begin{verbatim}
+void EvolveOneSecond(float Temperature[100][100], float conductivity) {
+    float Temporary[100][100];
+    for (int x = 0; x < 100; x++) {
+        for (int y = 0; y < 100; y++) {
+            float ThisT = Temperature[x][y];
+            float SumDiff = 0;
+            SumDiff += Temperature[x-1][y] - ThisT;
+            SumDiff += Temperature[x+1][y] - ThisT;
+            SumDiff += Temperature[x][y-1] - ThisT;
+            SumDiff += Temperature[x][y+1] - ThisT;
+            Temporary[x][y] = SumDiff * conductivity;
+        }
+    }
+    for (int x = 0; x < 100; x++) {
+        for (int y = 0; y < 100; y++) {
+            Temperature[x][y] = Temporary[x][y];
+        }
+    }
+}
+\end{verbatim}
+
+\Problem There are two DNA sequences `char A[200], B[200];'.
+Knowing that they came from a very old, therefore noisy, machine,
+how do I check if the second half of `A' matches the first half of `B'?
+\no find the longest common substring of `A' and `B'
+\no find the shortest common supersequence of `A' and `B'
+\no find the longest palindromic substring of `A[100..200] + B[0..100]'
+\yes compute the Hamming/Levenshtein distance between `A[100..200]' and `B[0..100]'
+
+\section{Functions}
+
+\Problem Select the three scenarios where
+your function needs to take another function as an argument.
+\yes To sort an array
+\no To reverse an array
+\yes To time a function
+\no To remove nans from an array
+\no To define a recursive function
+\yes To cache the values of a function
+
+\Problem Using `a', `b', `c', `d', `x', `add(, )', and `mul(, )', instead of `+' and `*',
+How to  express cubic polynomial $ax\sp3 + bx\sp2 + cx + d$?
+
+\tikz [code block right] \node {
+    float f(float x) \{ return 10 * x + 1; \}
+    float f(int x) \{ return 10 * x + 2; \}
+    int g(float x) \{ return 10 * x + 3; \}
+    int g(int x) \{ return 10 * x + 4; \}
+};
+
+\hangindent-10cm \hangafter-9
+\Problem According to the function definitions, what is `f(5)'?
+\blank{52}
+
+\Problem What is `g(1)'?
+\blank{54}
+
+\Problem What is `f(g(1))'?
+\blank{542}
+
+\Problem What is `f(f(g(g(f(1)))))'?
+\blank{523421}
+
+\tikz [code block right] \node {
+    #include <iostream>
+    #include <random>
+    using namespace std;
+    int main () \{
+        mt19937 rand(20251015), rane(20251015), ranf(20251015);
+        cout << rand() << " " << rand() << " " << rand() << endl;
+        cout << rane() % 2 << endl;
+        cout << ranf() % 3 << endl;
+        cout << rane() % 2 << rane() % 2 << endl;
+        cout << ranf() % 3 << ranf() % 3 << endl;
+    \}
+};
+
+\hangindent-14cm \hangafter-9
+\Problem The first line of the output is \hfil
+`2357136044 2546248239 3071714933'.
+What is the second line of output?
+\blank{1}
+
+\hangindent-14cm \hangafter-9
+\Problem What is the third line of output?
+\blank{2}
+
+\hangindent-14cm \hangafter-9
+\Problem What is the fourth line of output?
+\blank{01}
+
+\Problem What is the fifth line of output?
+\blank{00}
+
+
+\section{Pointers and Memory}
+
+\Problem `int *a[10];' declares a length-10 array of pointers to integers.
+How to declare a pointer to an array of 10 integers?
+\blank{int (*a)[10];}
+
+\Problem What is the correct way to declare two pointers, both pointing to integers?
+\no `int* a, b;`
+\yes `int *a, *b;`
+\no `&int a, b;`
+\no `int &a, &b;`
+
+\tikz [code block right] \node {
+    int a = 10;
+    int *p = &a;
+    *p += 20;
+    cout << a;
+};
+
+\hangindent-4cm \hangafter-1
+\Problem
+The code to the right outputs
+\no `10'
+\no `20'
+\yes `200'
+
+\hangindent-4cm \hangafter-2
+\Problem Why is `malloc(100 * sizeof(int))' preferred over `malloc(400)'?
+\no Because it is faster to avoid computer `sizeof(int)'.
+\yes Because `int' may be 4 bytes on some machines but 8 bytes on others.
+\no Because `sizeof(int)' is 8, so `400' is half of what we actually need.
+\no Because `sizeof(int)' is 2, so `400' is twice of what is actually needed.
+
+\tikz [code block right] \node {
+    int a = 1, b = 2, c = 3;
+    int *p = &a, *q = &b, *r = &c;
+    int **x = &p, **y = &q, **z = &r;
+    cout << **x << **y << **z << endl;
+    swap(x, y);
+    cout << **x << **y << **z << endl;
+    swap(a, c); swap(q, r);
+    cout << **x << **y << **z << endl;
+    swap(*x, *z);
+    cout << **x << **y << **z << endl;
+    swap(*p, *q); swap(**y, **z);
+    cout << **x << **y << **z << endl;
+};
+
+\hangindent-8cm \hangafter-9
+\Problem Look at the code to the right,
+what is the first line of output?
+\blank{123}
+
+\Problem What is the second line of output?
+\blank{213}
+
+\Problem What is the third line of output?
+\blank{132}
+
+\Problem What is the fourth line of output?
+\blank{231}
+
+\Problem What is the fourth line of output?
+\blank{312}
+
+\Problem `1*a**p***x' is
+\blank{3}
+
+\section{Structures and Classes}
+
+\tikz [code block right] \node {
+    struct Circle \{ float x, y, r; \};
+    struct Circle Scale (struct Circle c, float s) \{
+        // your code here
+        return big;
+    \}
+};
+
+\hangindent-11cm \hangafter-9
+\Problem Finish the function `Scale' such that 
+`Scale(c, 2)' shares the same center with `c' but has double the radius.
+
+\hangindent-11cm \hangafter-9
+\Problem `RotateCCW' keeps the center of a rectangle
+and rotate it by 90 degrees CCW.
+
+\tikz [code block right] \node {
+    struct Rectangle \{ float x1, y1, x2, y2; \};
+    struct Rectangle Scale
+    (struct Rectangle c, float h, float v) \{
+        // your code here
+        return big;
+    \}
+};
+
+\hangindent-11cm \hangafter-9
+\Problem Keep the center, scale the rectuangle
+using `h' as horizontal multiplier and `v' as vertical multiplier.
+
+\tikz [code block right] \node {
+    structure Node \{
+        double a;
+        Node *b;
+        Node *c;
+    \}
+};
+
+\hangindent-5cm \hangafter-9
+\Problem Reorder the following lines to make sense.
+\yes `tail->next = new Node; tail = tail->next; tail->data = count++; tail->next = NULL;'
+\yes `Node *head = new Node; head->data = count++; head->next = NULL;'
+\yes `struct Node \{ int data; Node *next; \};'
+\yes `Node *tail = head;'
+\yes `int count = 0;'
+
+\tikz [code block right] \node {
+    string Cmplx2Strng (struct Cmplx z) \{
+        string answer = to_string(z.a);
+        answer += " + ";
+        answer += to_string(z.b);
+        answer += "i";
+        return answer;
+    \}
+};
+
+\hangindent-9cm \hangafter-9
+\Problem Recall that $i = \sqrt{-1}$.
+Assume that I use the code to the right to print complex numbers.
+Guess the structure of `Cmplx'.
+
+\hangindent-9cm \hangafter-9
+\Problem When a stack is empty, what happens if we try to pop?
+\no The stack will overflow.
+\no The stack turns into a queue.
+\no The stack enters an infinite loop.
+\yes It depends on the implementation.
+
+\no \tikz {
+    \fill (0, 0) rectangle (1, 5);
+    \fill [white] (0.1, 0.1) rectangle (0.9, 4.9);
+    \foreach \y in {0,..., 4} {
+        \pgfmathtruncatemacro\r{round(rnd*100)}
+        \draw (0.2, \y+0.2) rectangle node {$\r$} (0.8, \y+0.8);
+    }
+}
+\no \tikz {
+    \fill (0, 0) rectangle (1, 5);
+    \fill [white] (0.1, 0.1) rectangle (0.9, 5.1);
+    \foreach \y in {0,..., 4} {
+        \pgfmathtruncatemacro\r{round(rnd*100)}
+        \draw (0.2, \y+0.2) rectangle node {$\r$} (0.8, \y+0.8);
+    }
+    \draw [->] (-1, 5) to[bend left=60] (0.3, 5);
+    \draw [->] (0.7, 5) to[bend left=60] (2, 5);
+    \path [->] (0.7, 0) to[bend right=60] (2, 0);
+}
+\no \tikz {
+    \fill (0, 0) rectangle (1, 5);
+    \fill [white] (0.1, -1) rectangle (0.9, 6);
+    \foreach \y in {0,..., 4} {
+        \pgfmathtruncatemacro\r{round(rnd*100)}
+        \draw (0.2, \y+0.2) rectangle node {$\r$} (0.8, \y+0.8);
+    }
+    \draw [->] (-1, 5) to[bend left=60] (0.3, 5);
+    \draw [->] (0.7, 0) to[bend right=60] (2, 0);
+}
+\no \tikz {
+    \fill (0, 0) rectangle (1, 5);
+    \fill [white] (0.1, -1) rectangle (0.9, 6);
+    \foreach \y in {0,..., 4} {
+        \pgfmathtruncatemacro\r{round(rnd*100)}
+        \draw (0.2, \y+0.2) rectangle node {$\r$} (0.8, \y+0.8);
+    }
+    \draw [->] (-1, 5) to[bend left=60] (0.3, 5);
+    \draw [->] (0.7, 5) to[bend left=60] (2, 5);
+    \draw [->] (-1, 0) to[bend right=60] (0.3, 0);
+    \draw [->] (0.7, 0) to[bend right=60] (2, 0);
+}
+
+\no \tikz {
+    \foreach \y in {0,..., 5} {
+        \begin{scope}[shift={(rnd/3, rnd/3)}]
+            \pgfmathtruncatemacro\r{round(rnd*100)}
+            \ifnum \y > 0
+                \draw (3/4, \y+1/4) circle(1/10);
+                \draw [->] (3/4, \y+1/4) to [out=-90, in=90, looseness=2] (prev);
+            \fi
+            \draw (0, \y) rectangle node {$\r$} (1/2, \y+1/2) rectangle (1, \y);
+            \draw (0, \y+1/2+1/20) coordinate (prev);
+        \end{scope}
+    }
+}
+\no \tikz {
+    \foreach \y in {0,..., 5} {
+        \begin{scope}[shift={(rnd/3, rnd/3)}]
+            \pgfmathtruncatemacro\r{round(rnd*100)}
+            \ifnum \y > 0
+                \draw (3/4, \y+1/4) circle(1/10) (prev2) circle(1/10);
+                \draw [->] (3/4, \y+1/4) to [out=-90, in=90, looseness=2] (prev1);
+                \draw [<-] (3/2, \y-1/20) to [out=-90, in=90, looseness=2] (prev2);
+            \fi
+            \draw (0, \y) rectangle node {$\r$} (1/2, \y+1/2) rectangle (1, \y) rectangle (3/2, \y+1/2);
+            \draw (0, \y+1/2+1/20) coordinate (prev1) (5/4, \y+1/4) coordinate (prev2) ;
+        \end{scope}
+    }
+}
+\no \tikz {
+    \begin{scope}[shift={(rnd/2, rnd/2)}, shift={(0, 0)}]
+        \draw (0, 0) rectangle (1/2, 1/2) rectangle (1, 0) rectangle (3/2, 1/2);
+        \draw (0, -1/20) coordinate (A);
+        \pgfmathtruncatemacro\r{round(rnd*100)}
+        \node at (1/4, 1/4) {$\r$};
+    \end{scope}
+    \begin{scope}[shift={(rnd/2, rnd/2)}, shift={(2, 0)}]
+        \draw (0, 0) rectangle (1/2, 1/2) rectangle (1, 0) rectangle (3/2, 1/2);
+        \draw (0, -1/20) coordinate (B);
+        \pgfmathtruncatemacro\r{round(rnd*100)}
+        \node at (1/4, 1/4) {$\r$};
+    \end{scope}
+    \begin{scope}[shift={(rnd/2, rnd/2)}, shift={(4, 0)}]
+        \draw (0, 0) rectangle (1/2, 1/2) rectangle (1, 0) rectangle (3/2, 1/2);
+        \draw (0, -1/20) coordinate (C);
+        \pgfmathtruncatemacro\r{round(rnd*100)}
+        \node at (1/4, 1/4) {$\r$};
+    \end{scope}
+    \begin{scope}[shift={(rnd/2, rnd/2)}, shift={(6, 0)}]
+        \draw (0, 0) rectangle (1/2, 1/2) rectangle (1, 0) rectangle (3/2, 1/2);
+        \draw (0, -1/20) coordinate (D);
+        \pgfmathtruncatemacro\r{round(rnd*100)}
+        \node at (1/4, 1/4) {$\r$};
+    \end{scope}
+    \begin{scope}[shift={(rnd/2, rnd/2)}, shift={(1, -2)}]
+        \draw (0, 0) rectangle (1/2, 1/2) rectangle (1, 0) rectangle (3/2, 1/2);
+        \draw (0, -1/20) coordinate (E);
+        \pgfmathtruncatemacro\r{round(rnd*100)}
+        \node at (1/4, 1/4) {$\r$};
+        \draw (3/4, 1/4) circle (0.1);
+        \draw [->] (3/4, 1/4) to [out=90, in=-90, looseness=2] (A);
+        \draw (5/4, 1/4) circle (0.1);
+        \draw [->] (5/4, 1/4) to [out=90, in=-90, looseness=2] (B);
+    \end{scope}\begin{scope}[shift={(rnd/2, rnd/2)}, shift={(5, -2)}]
+        \draw (0, 0) rectangle (1/2, 1/2) rectangle (1, 0) rectangle (3/2, 1/2);
+        \draw (0, -1/20) coordinate (F);
+        \pgfmathtruncatemacro\r{round(rnd*100)}
+        \node at (1/4, 1/4) {$\r$};
+        \draw (3/4, 1/4) circle (0.1);
+        \draw [->] (3/4, 1/4) to [out=90, in=-90, looseness=2] (C);
+        \draw (5/4, 1/4) circle (0.1);
+        \draw [->] (5/4, 1/4) to [out=90, in=-90, looseness=2] (D);
+    \end{scope}
+    \begin{scope}[shift={(rnd/2, rnd/2)}, shift={(3, -4)}]
+        \draw (0, 0) rectangle (1/2, 1/2) rectangle (1, 0) rectangle (3/2, 1/2);
+        \pgfmathtruncatemacro\r{round(rnd*100)}
+        \node at (1/4, 1/4) {$\r$};
+        \draw (3/4, 1/4) circle (0.1);
+        \draw [->] (3/4, 1/4) to [out=90, in=-90, looseness=2] (E);
+        \draw (5/4, 1/4) circle (0.1);
+        \draw [->] (5/4, 1/4) to [out=90, in=-90, looseness=2] (F);
+    \end{scope}
+}
+
+\Problem Which drawing represents a fixed-length array?
+
+\Problem Which drawing represents a stack (LIFO)?
+
+\Problem Which drawing represents a queue (FIFO)?
+
+\Problem Which drawing represents a double-ended queue?
+
+\Problem Which drawing represents a (singly) linked list?
+
+\Problem Which drawing represents a doubly linked list?
+
+\Problem Which drawing represents a binary tree?
+
+\section{Algorithm}
+
+\tikz [code block right] \node {
+    int attempts = ???;
+    int guess = 0;
+    int target = rand() \% 100;
+    while (attempt > 0) \{
+        attempt -= 1;
+        cin >> guess;
+        if (guess > target) \{ cout << "Too high"; \}
+        else if (guess < target) \{ cout << "Too low"; \}
+        else \{ cout << "Win"; return; \}
+    \}
+    cout << "Lose: no more attempts";
+};
+
+\hangindent-13cm \hangafter-99
+\Problem Consider the program to the right.
+You want to make it as hard as possible to a beginner,
+but you also want to ensure that you yourself can always win.
+What should you set `attempts' to?
+\no 1
+\no 2
+\no 3
+\no 4
+\no 5
+\no 6
+\yes 7
+\no 8
+\no 9
+\no 10
+\no 11
+\no 12
+\no 13
+\no 14
+\no 15
+\no 16
+\no 17
+\no 18
+\no 19
+\no 20
+
+\tikz [code block right] \node {
+    void BreadthOfTheField(int A[], int a, int b) \{
+        while (a < b) \{
+            int t = A[a]; A[a] = A[b - 1]; A[b - 1] = t;
+            BreadthOfTheField(A, a + 1, b - 1);
+            break;
+        \}
+    \}
+};
+
+\hangindent-13cm \hangafter-5
+\Problem What is the purpose of the function to the right?
+\no To sort an array
+\no To rotate an array
+\yes To revert an array
+\no To shuffle an array
+\no To summarize an array
+
+\tikz [code block right] \node {
+    void TrickOfTheKitchen(int A[100], int c) \{
+        int B[100];
+        for (int i = 0; i < 100; i++) \{
+            B[i] = A[(i + c) \% 100];
+        \}
+        for (int i = 0; i < 100; i++) \{
+            A[i] = B[i];
+        \}
+    \}
+};
+
+\hangindent-10cm \hangafter-9
+\Problem Consider another function as show to the right.
+This is my first implementation that uses a second array `B'.
+I want to achieve the same effect,
+but without using extra memory (i.e., the second array `B').
+So, instead, I call `BreadthOfTheField' three times.
+With what parameters should I call it?
+\blank{(A, 0, c); (A, c, 100); (A, 0, 100);}
+
+\immediate\closeout\answer
+
+\clearpage
+
+\section*{Computer Programming - Midterm Mock Exam - Answer Sheet}
+
+\tikzset{
+    every picture/.style={
+        baseline=-3pt,
+        blue!70!black,
+        every node/.style={font=\fontsize{24pt}{0}\fontspec{Comic Sans MS}}
+    },
+}
+
+Name (zh or en) \tikz \node {Hsin-Po Wang}; \hfil
+Student ID \tikz \node {B00201054};
+
+
+\input{\jobname.answer}
+
+\end{document}
