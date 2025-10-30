@@ -4,12 +4,8 @@
 using namespace std;
 
 template <typename T1>
-T1 Sumarray(T1 A[], int n, T1 zero){
-    T1 sum = zero;
-    for(int i = 0; i < n; i++){
-        sum = sum + A[i];
-    }
-    return sum;
+T1 Pair(T1 a, T1 b){
+    return make_pair(a, b);
 }
 
 int main(){
