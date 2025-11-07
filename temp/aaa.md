@@ -114,8 +114,17 @@ the chip will return
 
 except that the order of the sequences is shuffled
 (because DNA floats in a liquid container).
+Your program `dna.cpp` should read `dna.txt`
+and try to recover the original sequence.
 
+There are two catches
 
+- The DNA reader is not perfect,
+  it makes mistakes once per $100$ letters.
+- There are multiple possible solutions due to cyclic shifts.
+  Output the lexicographically smallest one.
+
+We believe that `<map>`is the best data structure for this problem.
 
 ## RSA interactive program [8 points]
 
@@ -138,65 +147,64 @@ and private key to output **plain** (decrypted message).
 
 All numbers are in hexadecimal format, like `0x1234abcd`.
 
-## Baby step  giant step [7 points]
+## Baby step giant step [7 points]
 
-Upload a file called `ear_brain_mouth.cpp`
-that takes one integer in the range $[10, 1000]$
-and prints its square to the screen.
+`E` is a class that overloads `+`, `-`, and `zero()`.
+Its instances can also be put in `set`.
+Your program `order.cpp` should contain a function template
 
-For instance, if the input is `30`, the output should be `900`.
+```C++
+template <typename E>
+long long order(const E& P) {
+    // your code here
+}
+```
+
+such that `order(P)` returns the smallest positive integer $k$
+such that `P + P + ... + P == P.zero()`.
+
+Examples:
+
+- `x + y` means $xy \bmod 1234567$.
+- Elliptic curves $y^2 = x^3 + 1$ over GF(99999989).
 
 ## Array editing monoid [6 points]
 
-Upload a file called `ear_ear_brain_mouth.cpp`
-that takes two integers in the range $[10, 1000]$
-and prints their sum to the screen.
+For large databases, some actions need to be bundled together.
+For instance, if Alice wants to pay Bob $10$ dollars,
+then we need
 
-For instance, if the input is `100 200`, the output should be `300`.
+- reduce Alice's balance by $10$ dollars, and
+- increase Bob's balance by $10$ dollars.
 
-## Understanding GitHub interface
+If, for instance, Alice's balance is reduced
+but somehow something is wrong with Bob's balance,
+then we need to roll back Alice's balance.
+Otherwise, the sum of all balances will not be correct.
 
-At the top of this page, you should see
+In database theory, this is called a transaction.
+Either all actions in a transaction are executed,
+or none of them are executed.
 
-```text
-forked from hsinpolab/ccpppy2025-0910-ear-brain-mouth-aaa
+Your `edit.cpp` should implement array editing monoid.
+An array editing action is something like the following
+
+```txt
+Alice += 10
+Bob += -10
+Charlie = 100
 ```
 
-This `hsinpolab` is a GitHub organization created for this course.
-This `ccpppy2025-0910-ear-brain-mouth-aaa` is TA's copy of this assignment.
-You can click the hyperlink to see if there is anything new.
-Somethins TA may fix typos or add useful hints.
-If you have no premission to see the repo, please contact TA.
+Your program should read a list of array editing actions from `actions.txt`
+and output the simplified list of actions to `simplified.txt`.
+For instance,
 
-You might also see
-
-```text
-This branch is 5 commits ahead of hsinpolab/ccpppy2025-0910-ear-brain-mouth-aaa:main.
-```
-
-where `5` can be any number.
-The trailing `main` means that you are on the `main` branch.
-This is the default branch, so don't worry about that for now.
-The word **ahead** means that you did something TA didn't do.
-For example,
-you are trying to finish this assignment while TA doesn't need to.
-
-However, if you see that your branch is **1 commit behind**,
-it means that TA did something you didn't.
-This is usually because TA is trying to fix typos or add useful hints.
-In this case, you should press **Sync fork** and **Update branch**.
-Do not, listen very carefully, do not discard your commits.
-Doing that will delete files you have uploaded.
-
-Below **Sync fork**, you might see a red cross ❌.
-This ❌ means that your files do not pass automatic checks.
-Click ❌ and click **Details** to see what goes wrong.
-Keep trying until you see a green check ✅.
-
-At the top of the list of files, you shall see a folder `.github/workflows`.
-Enter that folder to study `classroom.yml`,
-the file that explains autograding tests.
-It might help you understand what goes wrong.
+- `Alice += 10` followed by `Alice += -5`
+  can be simplified to `Alice += 5`.
+- `Bob += -10` followed by `Bob = 100`
+  can be simplified to `Bob = 100`.
+- `Charlie = 100` followed by `Charlie += 50`
+  can be simplified to `Charlie = 150`.
 
 ## Compile command
 
