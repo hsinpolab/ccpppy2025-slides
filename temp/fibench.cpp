@@ -31,13 +31,9 @@ double fib_rec(long long n) {
 // Dynamic programming
 double fib_dp(long long n) {
     if (n <= 1) return n;
-    double  a = 0;
-    double  b = 1;
-    double  c = 0;
+    double  a = 0, b = 1, c = 0;
     for (long long i = 2; i <= n; ++i) {
-        c = a + b;
-        a = b;
-        b = c;
+        c = a + b; a = b; b = c;
     }
     return b;
 }
@@ -46,19 +42,19 @@ double fib_dp(long long n) {
 struct M22 {
     double a, b, c, d;
 };
-M22 mul(const M22& X, const M22& Y) {
+M22 operator*(const M22& X, const M22& Y) {
     return {
         X.a*Y.a + X.b*Y.c,  X.a*Y.b + X.b*Y.d,
         X.c*Y.a + X.d*Y.c,  X.c*Y.b + X.d*Y.d
     };
-}
+};
 double fib_matrix(long long n) {
     if (n == 0) return 0;
     M22 Q{1,1,1,0};
     M22 res{1,0,0,1}; // identity
     while (n) {
-        if (n & 1) res = mul(res, Q);
-        Q = mul(Q, Q);
+        if (n & 1) res = res * Q;
+        Q = Q * Q;
         n >>= 1;
     }
     return res.b;

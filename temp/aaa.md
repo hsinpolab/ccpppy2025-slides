@@ -1,106 +1,222 @@
-# 1099 Midterm Mock Exam
+# 1106 Human Genome Project
 
-This is a mock exam and has no due.
-There is no autograder;
-check your answer by yourself.
+Due to the sheer amount and difficulty of this assignment,
+we haven't finished the testing data.
+You can, however, start working on the problems.
+When the testing data is ready,
+we will give you a new invitation link
+and at least another week to finish the assignment.
 
-On test day, half of the test cases are visible to you.
-The other half are 
-check
+## Time it  [10 points]
 
-## Gamma function [20 points]
+Finish the following program
 
-Gamma function is a generalization of factorial
-in the sense that $\Gamma(n) = (n-1)!$ for positive integers n.
-But gamma function is defined for positive real numbers
-and satisfies $\Gamma(x + 1) = x \cdot \Gamma(x)$.
+```C++
+// The recursion method
+double fib_rec(long long n) {
+    if (n <= 1) return double(n);
+    return fib_rec(n-1) + fib_rec(n-2);
+}
 
-So, how to define $\Gamma(0.3)$?
-It turns out that
-$\Gamma(0.3) = \Gamma(1.3) / 0.3
-= \Gamma(2.3) / 1.3 / 0.3
-= \Gamma(3.3) / 2.3 / 1.3 / 0.3$
-and so on.
-That is to say, if we know $\Gamma(100.3)$, we can compute $\Gamma(0.3)$.
-But how is that easier than finding $\Gamma(0.3)$ directly?
+// Dynamic programming
+double fib_dp(long long n) {
+    if (n <= 1) return n;
+    double  a = 0;
+    double  b = 1;
+    double  c = 0;
+    for (long long i = 2; i <= n; ++i) {
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    return b;
+}
 
-The trick is that $\ln(\Gamma(x))$ is almost linear in $x$ for large $x$.
-So $\ln(\Gamma(n + a)) \approx (1 - a) \ln(\Gamma(n)) + a \ln(\Gamma(n + 1))$
-for an integer $n$ and a real number $a \in (0, 1)$.
+// Matrix and square and multiply
+struct M22 {
+    double a, b, c, d;
+};
+M22 operator*(const M22& X, const M22& Y) {
+    return {
+        X.a*Y.a + X.b*Y.c,  X.a*Y.b + X.b*Y.d,
+        X.c*Y.a + X.d*Y.c,  X.c*Y.b + X.d*Y.d
+    };
+};
+double fib_matrix(long long n) {
+    if (n == 0) return 0;
+    M22 Q{1,1,1,0};
+    M22 res{1,0,0,1}; // identity
+    while (n) {
+        if (n & 1) res = res * Q;
+        Q = Q * Q;
+        n >>= 1;
+    }
+    return res.b;
+}
+double fib_sleep(long long n) {
+    usleep(n);
+    return 1;
+}
 
-Your program `gamma.cpp` should take one positive real number $x \in (0, 10)$
-and output $\Gamma(x)$ by first computing $\Gamma(100 + x)$
-using the linear approximation above.
-The following table shows some samples.
-
-| x   | Your output      | Correct gamma    |
-| --- | ---------------- | ---------------- |
-| 1.1 | 0.95177529264437 | 0.95135076986687 |
-| 2.2 | 1.10266783432144 | 1.10180249087971 |
-| 3.3 | 2.68617608304545 | 2.68343738195577 |
-| 4.4 | 10.1478078128180 | 10.1361018511551 |
-| 5.5 | 52.4051274851690 | 52.3427777845535 |
-| 6.6 | 345.092249354732 | 344.701924035220 |
-| 7.7 | 2772.54805077322 | 2769.83036232731 |
-| 8.8 | 26359.4865600057 | 26339.9863545086 |
-| 9.9 | 289987.252103518 | 289867.703840110 |
-
-## Tokenizer [10 points]
-
-Play the industrial tokenizer at
-<https://platform.openai.com/tokenizer>.
-
-Here we try to build a stupid tokenizer.
-In `tokens.txt`, you are given a list of tokens in the following format:
-
-```txt
-1 e
-2 i
-3 a
-4 n
-5 s
-...
-19 er
-20 in
-21 ti
-22 on
-23 es
-...
+int main() {
+    cout << "fib_rec spends " << time_f_at_n(fib_rec, 42) << " seconds" << endl;
+    cout << garbage_can << endl;
+    cout << "fib_dp spends " << time_f_at_n(fib_dp, 44442222) << " seconds" << endl;
+    cout << garbage_can << endl;
+    cout << "fib_matrix spends " << time_f_at_n(fib_matrix, 4444444422222222) << " seconds" << endl;
+    cout << garbage_can << endl;
+    cout << "fib_sleep spends " << time_f_at_n(fib_sleep, 5555555) << " seconds" << endl;
+    cout << garbage_can << endl;
+}
 ```
 
-Your program `tokenizer.cpp` should take a line of string `s`
-and output a list of integers using greedy matching of tokens.
+One thing to keep in mind is that some functions are too fast that
+CPU may spend more time on the benchmarking code than the function itself.
+For this kind of function,
+we can run it multiple times and compute the average.
+The problem is that we don't know how many times we should run it
+unless we time it first.
+You see the dilemma?
 
-- For example, if the input is `integer`,
-  then both `2 i` and `20 in` can match the prefix,
-  so the first integer should be `20`.
-- Next we try to match `teger`.
-  Since `24 te` is better than `8 t`, we should choose `24`.
-- Now we are left with `ger`.
-  Since there is no `ge` in the token list, we should choose `16 g`.
-- Finally, `er` is `19`.
+To solve this, time the function once first.
+If it spends less than `1` seconds,
+run it 10 times and take the average.
+If it is still less than `1` second,
+run it 100 times and take the average.
+And so on.
+The `<chrono>` library is useful for timing.
 
-To conclude, the output should be `20 24 16 19`.
+## Human genome project  [9 points]
 
-For if the sentence contains space, output `0`.
-Anything other than lowercase letters and spaces are not allowed.
+[Wiki](https://en.wikipedia.org/wiki/Human_genome_project)
 
-## Square and Multiply [5 points]
+The following toy model demonstrate the difficulty of reading human DNA.
+Imagine that there is a circular DNA sequence of length $1000$,
+such as $x_1, x_2, \dotsc, x_{1000} =$ `ACGTACGTACGT...`.
+We said that it is circular because the end connects to the beginning,
+$x_{1001} = x_1$.
+With the PCR technology, we can replicate the DNA sequence multiple times
+so we always have enough copies to read.
 
-Read the [wikipedia](https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication)
-for how to add two points on an elliptic curve.
-You also need to know how to find $1/n$ modulo a prime $p$:
-$1/n \equiv n^{p-2} \mod p$.
+Now, reading $1000$ letters in one go is too time consuming
+because each letter takes one full second (that's a lot in the AI era).
+So we developed a chip with $1000$ nanopores;
+each nanopore can read $100$ letters in in parallel,
+so the whole task takes $100$ seconds.
+So instead of $(x_1, x_2, \dotsc, x_{1000})$,
+the chip will return
 
-Consider the elliptic curve $y^2 = x^3 + 1$ modulo $p = 99999989$.
-Consider a starting point $P = (32540029, 17791926)$ on the curve.
-Your program `elliptic.cpp` should take one `long long` $n \in [1, 2^{63}]$
-and output the point $n \cdot P$ on the curve.
+- $(x_1, x_2, \dotsc, x_{100})$,
+- $(x_2, x_3, \dotsc, x_{101})$,
+- $(x_3, x_4, \dotsc, x_{102})$,
+- and so on, until
+- $(x_{1000}, x_1, \dotsc, x_{999})$,
 
-Use the following SageMath code to verify your answer.
+except that the order of the sequences is shuffled
+(because DNA floats in a liquid container).
 
-```python
-E = EllipticCurve(GF(99999989), [0, 0, 0, 0, 1])
-P = E(32540029, 17791926)
-print(P * 123456789)
+
+
+## RSA interactive program [8 points]
+
+[Wiki](https://en.wikipedia.org/wiki/RSA_cryptosystem)
+
+Upload a file called `keygen.cpp`.
+Your program should take an input $n$. and pick two distinct prime numbers
+$p$ and q$ between $2^n$ and $2^{n+1}$.
+Let $N = p \cdot q$ and $e = 65537$ be the public key
+and compute the corresponding private key $d$.
+Then create a `private_key.txt` to store $p$, $q$, and $d$
+(one number per line),
+and a `public_key.txt` to store $N$ and $e$ (one number per line).
+
+TA's program `encrypt.py` reads the public key
+and stores the cipher text to `cipher.txt`.
+
+Upload another file `decrypt.cpp` that reads the cipher text
+and private key to output **plain** (decrypted message).
+
+All numbers are in hexadecimal format, like `0x1234abcd`.
+
+## Baby step  giant step [7 points]
+
+Upload a file called `ear_brain_mouth.cpp`
+that takes one integer in the range $[10, 1000]$
+and prints its square to the screen.
+
+For instance, if the input is `30`, the output should be `900`.
+
+## Array editing monoid [6 points]
+
+Upload a file called `ear_ear_brain_mouth.cpp`
+that takes two integers in the range $[10, 1000]$
+and prints their sum to the screen.
+
+For instance, if the input is `100 200`, the output should be `300`.
+
+## Understanding GitHub interface
+
+At the top of this page, you should see
+
+```text
+forked from hsinpolab/ccpppy2025-0910-ear-brain-mouth-aaa
 ```
+
+This `hsinpolab` is a GitHub organization created for this course.
+This `ccpppy2025-0910-ear-brain-mouth-aaa` is TA's copy of this assignment.
+You can click the hyperlink to see if there is anything new.
+Somethins TA may fix typos or add useful hints.
+If you have no premission to see the repo, please contact TA.
+
+You might also see
+
+```text
+This branch is 5 commits ahead of hsinpolab/ccpppy2025-0910-ear-brain-mouth-aaa:main.
+```
+
+where `5` can be any number.
+The trailing `main` means that you are on the `main` branch.
+This is the default branch, so don't worry about that for now.
+The word **ahead** means that you did something TA didn't do.
+For example,
+you are trying to finish this assignment while TA doesn't need to.
+
+However, if you see that your branch is **1 commit behind**,
+it means that TA did something you didn't.
+This is usually because TA is trying to fix typos or add useful hints.
+In this case, you should press **Sync fork** and **Update branch**.
+Do not, listen very carefully, do not discard your commits.
+Doing that will delete files you have uploaded.
+
+Below **Sync fork**, you might see a red cross ❌.
+This ❌ means that your files do not pass automatic checks.
+Click ❌ and click **Details** to see what goes wrong.
+Keep trying until you see a green check ✅.
+
+At the top of the list of files, you shall see a folder `.github/workflows`.
+Enter that folder to study `classroom.yml`,
+the file that explains autograding tests.
+It might help you understand what goes wrong.
+
+## Compile command
+
+We use
+
+```shell
+    g++-14 -std=c++26 ijklmn.cpp -o opqrst
+```
+
+to compile your C++ programs.
+Here, `g++-14` means that we are using the version 14 of GNU C++ compiler.
+The option `-std=c++26` means that we are using C++26 standard.
+The input file is `ijklmn.cpp`,
+and `opqrst` is the output file because it is after `-o`.
+
+I understand that it's compilcated if you are new.
+Most of the time,
+
+```shell
+    g++ ijklmn.cpp -o opqrst
+```
+
+is equivalent to the line above.
