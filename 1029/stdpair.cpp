@@ -13,10 +13,10 @@ int main(){
     cout << a << " " << b << endl;
 
     pair<float, string> Pfs = {2.5, "world"};
+    auto [x, s] = Pfs;
     cout << "use first and second:" << endl;
     cout << Pfs.first << " " << Pfs.second << endl;
     cout << "use unpacking:" << endl;
-    auto [x, s] = Pfs;
     cout << x << " " << s << endl;
 }
 

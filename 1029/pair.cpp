@@ -10,7 +10,7 @@ struct Pair{
 };
 
 template <typename T1>
-T1 Sumarray(Pair<T1> P){
+T1 Summary(Pair<T1> P){
     T1 a = P.a;
     T1 b = P.b;
     T1 sum = a + b;
@@ -19,10 +19,10 @@ T1 Sumarray(Pair<T1> P){
 
 int main(){
     Pair<int> Pi = {3, 5};
-    cout << Sumarray(Pi) << endl;
+    cout << Summary(Pi) << endl;
     Pair<float> Pf = {2.5, 4.5};
-    cout << Sumarray(Pf) << endl;
+    cout << Summary(Pf) << endl;
     Pair<string> Ps = {"Hello, ", "world!"};    
-    cout << Sumarray(Ps) << endl;
+    cout << Summary(Ps) << endl;
 }
 
