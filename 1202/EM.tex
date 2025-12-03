@@ -1,0 +1,36 @@
+
+\documentclass[tikz]{standalone}
+    \usetikzlibrary{3d} 
+\begin{document}
+\foreach \t in {0, ..., 35} {
+    \pgfmathsetmacro\T{\t * 10 + 5}
+    \pgfmathsetmacro\S{\T - 90}
+    \pgfmathsetmacro\yv{cos(30)}
+    \pgfmathsetmacro\zu{cos(\T)}
+    \pgfmathsetmacro\zv{sin(30) * sin(\T)}
+    \pgfmathsetmacro\xu{cos(\S)}
+    \pgfmathsetmacro\xv{sin(30) * sin(\S)}
+    \pgfmathsetmacro\A{cos(\t * 30 + 10)}
+    \begin{tikzpicture} [x={(\xu cm, \xv cm)}, z={(\zu cm, \zv cm)}, y={(0 cm, \yv cm)}]
+        \path (-10cm, -5cm) (10cm, 5cm);
+        \tikzset{overlay}
+        \def\wave{
+            \draw[fill,thick,fill opacity=.2]
+                plot [domain=-6:6,samples=500] ({\x}, {\A * sin(\x * 60)});
+            \foreach \x in {-6, ..., 6} {
+                \draw[thick] ({\x}, 0) -- ({\x}, {\A * sin(\x * 60)});
+            }
+        }
+        \begin{scope}[canvas is zy plane at x=0,fill=blue]
+            \wave
+            \node at (6,-1.5) [transform shape] {magnetic field};
+        \end{scope}
+        \begin{scope}[canvas is zx plane at y=0,fill=red]
+            \wave
+            \node at (6,1.5) [rotate=180,xscale=-1,transform shape]
+                {electric field};
+        \end{scope}
+    \end{tikzpicture}
+}
+\end{document}
+

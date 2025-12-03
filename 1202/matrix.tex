@@ -1,0 +1,31 @@
+
+\documentclass{article}
+\usepackage{mathtools} % mathtools includes amsmath
+\begin{document}
+    You will need matrices a lot
+    \[
+        \begin{bmatrix}
+            \frac{\partial u}{\partial x} & \frac{\partial u}{\partial y}  \\
+            \frac{\partial v}{\partial x} & \frac{\partial v}{\partial y} 
+        \end{bmatrix}
+    \]
+    Rounded version are also very popular;
+    dfrac forces the fraction to be display size
+    (tfrac for text size).
+    \[
+        \begin{pmatrix}
+            \dfrac{\partial u}{\partial x} & \dfrac{\partial u}{\partial y}  \\
+            \dfrac{\partial v}{\partial x} & \dfrac{\partial v}{\partial y} 
+        \end{pmatrix}
+    \]
+    Cases
+    \[
+        |x| = 
+        \begin{cases*}
+            x & if $x > 0$, \\
+            -x & if $x < 0$, \\
+            0 & if $x = 0$.
+        \end{cases*}
+    \]
+\end{document}
+

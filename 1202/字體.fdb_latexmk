@@ -1,0 +1,18 @@
+# Fdb version 4
+["pdflatex"] 1764717290 "/Users/ThinBold/Git/ccpppy2025-slides/1202/字體.tex" "字體.pdf" "字體" 1764717291 2
+  "/Users/ThinBold/Git/ccpppy2025-slides/1202/字體.tex" 1764717290 521 1aa4e5116a1cab89368fa3e307f8b547 ""
+  "/usr/local/texlive/2022/texmf-dist/tex/latex/base/article.cls" 1667332637 20144 d5ecf0a5140c8d8d8b72cbe86e320eff ""
+  "/usr/local/texlive/2022/texmf-dist/tex/latex/base/size10.clo" 1667332637 8448 c33a4e1cb35cee9b33c2b21033b73e39 ""
+  "/usr/local/texlive/2022/texmf-dist/tex/latex/fontspec/fontspec.sty" 1642282977 1656 7e824878bad4df5a3e8bba4e463d9126 ""
+  "/usr/local/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1666901542 30426 f2fb69fcda4dc35ed0b7dee211bce679 ""
+  "/usr/local/texlive/2022/texmf-dist/tex/latex/l3kernel/expl3.sty" 1671310534 6107 386d6336ccdc5637fb2ac440a8c4ecaa ""
+  "/usr/local/texlive/2022/texmf-dist/tex/latex/l3packages/xparse/xparse.sty" 1671310555 6812 c155095bd0101370166071972167f9ce ""
+  "/usr/local/texlive/2022/texmf-dist/web2c/texmf.cnf" 1646502317 40171 cdab547de63d26590bebb3baff566530 ""
+  "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1672883769 7874816 083bfca59a997095320909513dbf74c9 ""
+  "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
+  "字體.aux" 1764716906 32 3985256e7290058c681f74d7a3565a19 ""
+  "字體.tex" 1764717290 521 1aa4e5116a1cab89368fa3e307f8b547 ""
+  (generated)
+  "字體.log"
+  "字體.pdf"
+  (rewritten before read)

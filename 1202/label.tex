@@ -1,0 +1,32 @@
+
+\documentclass{article}
+\usepackage{mathtools} % mathtools includes amsmath
+\begin{document}
+
+    The un-starred version \verb|equation|
+    add numerical tags automatically.
+    \begin{equation}
+        e^{i\pi} + 1 = 0.                                       \label{Euler}
+    \end{equation}
+    Even if you don't add a label, the equation is still numbered.
+    \begin{align}
+        f(x) &= (x + 1)^2 \\
+            &= x^2 + 2x + 1.                                  \label{Expand}
+    \end{align}
+    So you use \verb|\notag| to disable numbering on specific lines.
+    \begin{gather}
+        V - E + F = 2,                                              \notag \\
+        E = mc^2.                                            \label{Einstein}
+    \end{gather}
+    note that each line has a punctuation.
+
+    \eqref{Euler} is Euler's identity.
+
+    \eqref{Expand} is the quadratic version of binomial theorem.
+
+    \eqref{Einstein} is Einstein's mass-energy equivalence.
+
+    Compile twice to get numbers right.
+
+\end{document}
+

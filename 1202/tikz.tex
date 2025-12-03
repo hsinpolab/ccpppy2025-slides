@@ -1,0 +1,16 @@
+
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+    \begin{tikzpicture}
+        \draw [->] (-1, 0) -- (5, 0);
+        \node at (5, 0) [right] {$x$};
+        \draw [->] (0, -1) -- (0, 3);
+        \node at (0, 3) [above] {$y$};
+        \draw (1, 1) rectangle (4, 2);
+        \node at (0, 0) [below left] {origin};
+        \node at (4, 2) [above right] {upper right corner};
+        \node at (4, 1) [below right] {$(2^2, 1^1)$};
+    \end{tikzpicture}
+\end{document}
+

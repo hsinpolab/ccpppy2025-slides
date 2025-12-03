@@ -1,0 +1,18 @@
+
+\documentclass{article}
+\usepackage{mathtools} % mathtools includes amsmath
+\begin{document}
+    Avoid using \verb|\left( ... \right)|
+    \[
+        \left\{ \left[ \left(
+        \sum_{a,b\in A^2} p(a, b) \ln \frac{1}{p(a|b)}
+        \right) \right] \right\}
+    \]
+    Instead, use \verb|\bigl, \Bigl, \biggl, \Biggl | to control the size
+    \[
+        \Biggl\{ \biggl[ \Bigl(
+        \sum_{a,b\in A^2} p(a, b) \ln \frac{1}{p(a|b)}
+        \Bigr) \biggr] \Biggr\}
+    \]
+\end{document}
+

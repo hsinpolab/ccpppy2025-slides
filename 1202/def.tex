@@ -1,0 +1,28 @@
+
+\documentclass{article}
+\begin{document}
+    \def\a{\b-b-\b}
+    \def\b{\c-c-\c}
+    \def\c{\d-d-\d}
+    \def\d{e}
+    \a
+
+    \clearpage
+
+    \def\swap#1#2{#2#1}
+
+    \swap{Alice}{Bob}
+
+    \swap AB
+
+    $\swap\alpha\beta$
+
+    \clearpage
+
+    \def\swap#1and#2;{#2\&\&\&#1}
+
+    \swap Alice and Bob;
+
+    \swap Candy and Durian;
+\end{document}
+

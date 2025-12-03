@@ -1,0 +1,15 @@
+
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+    \begin{tikzpicture}
+        \foreach \x in {1, ..., 10} {
+            \foreach \y in {1, ..., 25} {
+                \pgfmathsetmacro\u{\x + \x/10}
+                \pgfmathsetmacro\v{\y + (1 + sin(\y * 50)) / 2}
+                \draw (\x, \y) rectangle (\u, \v);
+            }
+        }
+    \end{tikzpicture}
+\end{document}
+

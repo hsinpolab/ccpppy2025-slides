@@ -1,0 +1,30 @@
+
+\documentclass{article}
+\usepackage{booktabs}
+\usepackage{lipsum}
+\begin{document}
+
+    \lipsum[1-2]
+
+    \begin{table}
+        \centering
+        \caption{Relational database example}
+        \label{fig:rdb}
+        \bigskip
+        \begin{tabular}{cccc}
+            \toprule
+            Tx ID & Buyer & Good & Seller \\
+            \midrule
+            3141 & Alice   & apple  & Adam  \\
+            5926 & Bob     & banana & Becky \\
+            5358 & Charlie & cherry & Cindy \\
+            9793 & David   & Durian & Dian  \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+    \lipsum[3-4]
+
+    Do you still remember Table~\ref{fig:rdb}?
+\end{document}
+

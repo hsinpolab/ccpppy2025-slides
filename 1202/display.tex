@@ -1,0 +1,36 @@
+
+\documentclass{article}
+\usepackage{mathtools} % mathtools includes amsmath
+\begin{document}
+
+    Use \verb|\[ ... \]|.
+    Do not use \verb|$$ ... $$|, it is too old.
+    \[ a^2 + b^2 = c^2. \]
+    Put punctuation in the display math too.
+
+    The \verb|equation*| environment from amsmath package
+    is the same as \verb|\[ ... \]|.
+    \begin{equation*}
+        e^{i\pi} + 1 = 0.                                         \tag{Euler}
+    \end{equation*}
+    Use \verb|\tag{...}| to name or explain the equation.
+
+    The \verb|align*| environment from amsmath package
+    is for multiple equations that allow you to align verbs.
+    (Each equal sign is a verb.)
+    \begin{align*}
+        f(x) &= (x + 1)^2 \\
+            &= x^2 + 2x + 1.                                    \tag{Expand}
+    \end{align*}
+    The ampersand \verb|&| is the alignment point.
+    The punctuation is needed for the last line.
+
+    Use \verb|gather*| to center multiple equations without alignment.
+    \begin{gather*}
+        V - E + F = 2,                                         \tag{Euler} \\
+        E = mc^2.                                              \tag{Einstein}
+    \end{gather*}
+    note that each line has a punctuation.
+
+\end{document}
+
