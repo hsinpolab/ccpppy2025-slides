@@ -17,6 +17,17 @@
 
     $\swap\alpha\beta$
 
+    \def\rotate#1#2#3{#2#3#1}
+
+    \rotate ABC
+
+    \swap \rotate ABCD
+    = A\rotate BCD
+
+    \swap\swap ABCD
+    = A\swap BCD
+    = ACBD 
+
     \clearpage
 
     \def\swap#1and#2;{#2\&\&\&#1}
@@ -24,5 +35,11 @@
     \swap Alice and Bob;
 
     \swap Candy and Durian;
+
+    \def\swap#1\and#2;{#2\&\&\&#1}
+
+    \swap Alice \and Bob;
+
+    \swap Candy \and Durian;
 \end{document}
 
