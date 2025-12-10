@@ -1,0 +1,782 @@
+% !TEX encoding = UTF-8
+% !TEX program = lualatex
+
+\documentclass[a4paper]{article}
+
+\usepackage[left=1.5cm, right=1.5cm, top=1cm, bottom=2cm]{geometry}
+
+\usepackage{mathtools, amssymb}
+
+\usepackage{fontspec}
+    \setmainfont{Noto Serif}
+    \setsansfont{Noto Sans TC}
+    \setmonofont{Noto Sans Mono}
+
+\usepackage{tikz, eso-pic}
+
+\tikzset{
+    every picture/.style={baseline=(current bounding box)},
+    code block/.style={
+        fill=gray!10, align=left, inner ysep=0pt, name=code node,
+        font={\hskip-20pt\ttfamily\catcode32=12\catcode13=13\relax}
+    },
+    code block right/.style={
+        overlay, xshift=18cm, every node/.style={code block, below left},
+        execute at end picture={
+            \pgfpointanchor{code node}{south west}
+            \pgfgetlastxy\minx\miny
+            \pgfpointanchor{code node}{north east}
+            \pgfgetlastxy\maxx\maxy
+            \xdef\codewidth{\the\dimexpr\maxx-\minx+10pt\relax}
+            \pgfmathtruncatemacro\codeheight{(\maxy-\miny+20)/11pt}
+            \xdef\codeheight{\codeheight}
+        }
+    }
+}
+\newcounter{p}
+\def\Problem#1{\ifhmode\\~\\\fi\stepcounter{p}[\arabic{p}]\hskip0pt plus1em
+    \immediate\write\answer{\hbox to#1{[\arabic p]\hss}\hskip0pt plus#1}}
+\newcounter{c}
+\def\yes{\no}
+\def\no{\hskip0pt plus1em\stepcounter c%
+    \ifnum\value c=27\setcounter c1\fi(\Alph c) }
+\newwrite\answer\immediate\openout\answer=\jobname.answer
+
+\begin{document}
+
+\parskip1em
+\parindent0pt
+\rightskip0pt plus2em
+
+\catcode`\#=12
+\catcode`\%=12
+\catcode`\^=12
+\catcode`\&=12
+\catcode`\_=12
+\catcode`\'=13 \def'{\rmfamily}
+\catcode`\`=13 \def`{\ttfamily}
+\catcode13=13 \def
+{\\} \catcode13=5\relax
+
+\section*{Computer Programming - Final Mock}
+
+\sffamily
+
+考試時間 Test time 15:50 pm to 18:10 pm; 2.5 hours.
+以投影時鐘為準 Using the projected clock as official time.
+在答案卷上作答 Answer on the answer sheet.
+每題一分 One point per problem.
+全對才給分 No partial credit.
+不倒扣 No penalty for wrong answers.
+禁止外部資源（比照學測、分科） No external resources, like TOEFL.
+
+\rmfamily
+
+\tikz [code block right] \node {
+    class Rabbit \{
+        int age;
+        string name;
+    public:
+        // constructors here
+        // get_age() here
+        // rename() here
+    \}
+};
+\hangindent-\codewidth \hangafter-\codeheight
+\Problem{2em}
+By default, class members are
+\no protected
+\yes private
+\no public
+\no friend
+~
+\Problem{2em}
+By default, struct members are
+\no protected
+\no private
+\yes public
+\no friend
+~
+\Problem{2em}
+Define the default constructor that sets the age to `0'
+and the name to `unnamed rabbit'.
+~
+\Problem{2em}
+Define a constructor that sets the age to `0'
+and the name to the argument.
+~
+\Problem{2em}
+Define the getter function of `age'.
+~
+\Problem{2em}
+Define the setter function `rename' that takes one string as argument;
+if the string contains only `a'--`z' (all lowercase), then rename.
+Otherwise return false.
+
+\tikz [code block right] \node {
+    class Dog \{ public:
+        int age;
+        ...
+    \}
+    class Chiwawa : public Dog \{ public:
+        int dB;
+        ...
+    \}
+};
+\hangindent-\codewidth \hangafter-\codeheight
+\Problem{2em}
+If `p1' is a pointer to a dog, how does `p1->age' work?
+\no The compiler replaces it with `p1.(*age)'.
+\no The runtime searches for `age' in the dictionary of of the dog.
+\yes The compiler replaces it with `*(p1 + shift)' for some number `shift'.
+~
+\Problem{2em}
+If the type of `p2' is pointer-to-dog, but it points to a chiwawa,
+how does `p2->age' work?
+\no The runtime cast `*p2' to a dog first and the problem reduces to the previous question.
+\no The runtime searches for `age' in the dictionary of of the chiwawa.
+\yes The compiler replaces it with `*(p2 + shift)' for the same `shift' as the last question.
+\no The compiler replaces it with `*(p2 + shift)' for some different `shift'.
+\no This does not work.
+~
+\Problem{2em}
+If the type of `p3' is a pointer-to-chiwawa, but it points to a dog,
+how does `p3->age' work?
+\no This is not possible.
+\no The runtime cast `*p3' to chiwawa using the default constructor.
+\yes The compiler replaces it with `*(p3 + shift)' for the same number as the last question.
+\no The compiler replaces it with `*(p3 + shift)' for some different number `shift'.
+~
+\Problem{2em}
+If the type of `p4' is a pointer-to-dog, but it points to a chiwawa,
+how does `p4->dB' work?
+\no The runtime cast `p4' to pointer-to-chiwawa and perform `->dB'
+\no The runtime searches for `dB' in the dictionary of of the chiwawa.
+\no The compiler replaces it with `*(p4 + shift)' for some different number `shift'.
+\yes This does not work.
+~
+\Problem{2em}
+If you answer to the previous question implies that the compiler knows
+that p4 points to a chiwawa, why does it know?
+If your answer implies that the compiler does not know,
+how to fix the code so that it knows?
+~
+\Problem{2em}
+Which of the following are the benefit of using array of structures:
+`Dog HuangBaBa[100]'?
+\no Better cache locality when increasing all dogs' ages.
+\yes Encapsulation and readable code: easy to pass `Dog*' to functions.
+\yes Easier to sort dogs by age or name as we only modify one array.
+\no Uses less memory because this avoids padding between two arrays.
+~
+\Problem{2em}
+Which of the following is the benefit of using structures of arrays:
+`int ages[100]; string names[100];'?
+\yes Enables SIMD/vectorization for single-field operations.
+\yes Uses less memory because this avoids padding between members.
+\no Easier to sort dogs by age or name as we only modify one array.
+\no Encapsulation and readable code: it suffices to pass index `i' to functions.
+
+\tikz [code block right] \node {
+    int y = 2;
+    @@@ f = [=y](auto x) \{ return x * y; \}
+    ### g = [&y](auto x) \{ return x + y; \}
+    y = 1;
+};
+\hangindent-\codewidth \hangafter-\codeheight
+\Problem{2em}
+What should `@@@' be?
+~
+\Problem{2em}
+What should `###' be?
+~
+\Problem{2em}
+What is `f(g(2))'?
+~
+\Problem{2em}
+Using composition of the form `f(g(...(g(f(0)))...))' to produce `101'.
+
+\tikz [code block right] \node {
+    auto pi = make_pair(3.14, "pi");
+    auto e = make_pair(2.71, "e");
+    auto [a, b] = pi;
+    auto [c, d] = e;
+};
+\hangindent-\codewidth \hangafter-\codeheight
+\Problem{2em}
+Another way to obtain `a' is `auto a = pi.???;'
+~
+\Problem{2em}
+Another way to obtain `b' is `auto b = pi.???;'
+~
+\Problem{2em}
+The function template `make_pair' is defined in the standard library.
+But how is it defined?
+You may assume that the structure template `pair' is already defined.
+You also don't need to worry about `const' or `&' (pass by reference thing).
+~
+\Problem{2em}
+How to use `decltype' to make `DS' the type of `pi'?
+~
+\Problem{2em}
+Overload the `+' operator for `DS' so that `pi + e' produces
+`make_pair(5.85, "pi + e")'.
+
+\tikz [code block right] \node {
+    template<typename T>
+    T sum(T one) \{ return one; \}
+    template<typename T, typename ... TT>
+    T sum(T first, TT ... rest)
+    \{ return first + sum(rest); \}
+};
+\hangindent-\codewidth \hangafter-\codeheight
+\Problem{2em}
+To the right is a usage of variadic template.
+Use the similar style to define `apply' so that
+`apply(x, f, g, h)' produces `h(g(f(x)))'.
+
+\Problem{2em}
+Let $t\sb0, t\sb1, t\sb2, \dotsc$ be the Thur--Morse sequence defined as:
+\[
+    t\sb0 = 0,\;
+    t\sb{2n} = t\sb n,\;
+    t\sb{2n+1} = 1 - t\sb n.
+\]
+Let `Car' be a class.
+Overload the `+' operator for `queue<Car>' so that
+the $j$th element of the `q1 + q2' is from
+`q1' if $t\sb j = 0$ and from `q2' if $t\sb j = 1$.
+Note that cars from the same queue should remain in the same order.
+
+\tikz [code block right] \node {
+    sort(VVI.begin(), VVI.end(),
+    [](auto a, auto b) \{
+        ???
+    \});
+};
+\hangindent-\codewidth \hangafter-\codeheight
+\Problem{2em}
+For something like
+`vector<vector<int>> VVI = \{ \{1,2,3\}, \{4,5\}, \{6\} \};'
+how to sort it so that shorter vectors come first,
+and for vectors of the same length, lower sum comes first,
+and for vectors of the same length and sum, using dictionary order?
+
+\Problem{2em}
+Overload the `()' operator for `vector<T>' so that
+`v(3)' returns `v[3]' and `v(-5)' returns `v[v.size() - 5]'.
+
+\Problem{2em}
+Overload the `[]' operator for `vector<T>' so that
+`v[vector<int>{2, 4, 8}]' returns `vector<T>{v[2], v[4], v[8]}'.
+
+\Problem{2em}
+An RSA public key is `p * q = 91; e = 5', what is the private key `d'? 
+
+\tikz [code block right] \node {
+    array<bool, 127> decode(array<bool, 127> y) \{
+        ???
+    \}
+};
+\hangindent-\codewidth \hangafter-\codeheight
+\Problem{2em}
+A Hamming codeword is an `array<bool, 127> x;' such that $x H = 0$,
+where $H$ is the matrix where the $j$th row is the binary representation
+of `j'; so the first row is `0000001' and the last row is `1111111'.
+Given another `array<bool, 127> y', find the codeword `x'
+that differs from `y' by at most one bit.
+
+\tikz [code block right] \node {
+    A = [1, 2, 3]
+    B = "w x y z"
+    for a, b in zip(A, B):
+        print(a, b)
+};
+\hangindent-\codewidth \hangafter-\codeheight
+\Problem{2em}
+What is the first line of the output?
+~
+\Problem{2em}
+What is the second line of the output?
+~
+\Problem{2em}
+What is the fourth line of the output?
+(If there is no fourth line, write NONE).
+~
+\Problem{2em}
+What is `list(map(lambda x: B[x], A))'?
+~
+\Problem{2em}
+What is `reduce(lambda x, y: max(x, y), B, B[0])'?
+~
+\Problem{2em}
+What is `filter(lambda x: x & 1, B)'?
+
+\Problem{2em}
+In the video game \emph{The Farmer Was Replaced},
+how to fertilize the entire field exactly once?
+
+\def\|{\textbackslash}
+\tikz [code block right] \node {
+    \|def\|rota#1#2#3\{#2#3#1\}
+    \|def\|rotb#1#2#3\{#3#1#2\}
+    \|def\|refl#1#2#3\{#3#2#1\}
+};
+\hangindent-\codewidth \hangafter-\codeheight
+\Problem{2em}
+What is `\|rota 123456789'?
+~
+\Problem{2em}
+What is `\|rotb\|rota 123456789'?
+~
+\Problem{2em}
+What is `\|expandafter\|refl\|refl 123456789'?
+~
+\Problem{2em}
+What is `\|expandafter\|expandafter\|expandafter\|refl\|refl 123456789'?
+~
+
+\def\|{\textbackslash}
+\tikz [code block right] \node {
+    \|def\|two#1\{tour\}
+    \|def\|to\{\|two\|two\}
+    \|edef\|too\{\|two\|two\}
+    \|edef\|tool\{\|noexpand\|two\|noexpand\|two\}
+    \|edef\|toll\{\|noexpand\|two\|to\}
+    \|edef\|toll\{\|toll\}
+    \|def\|two#1\{tall\}
+    \|to \|\| \|too \|\| \|tool \|\| \|toll
+};
+\hangindent-\codewidth \hangafter-\codeheight
+\Problem{2em}
+What is the first line of the output?
+~
+\Problem{2em}
+What is the second line of the output?
+~
+\Problem{2em}
+What is the third line of the output?
+~
+\Problem{2em}
+What is the fourth line of the output?
+
+\Problem{2em}
+Which Ubuntu version is used in autograder?
+
+\Problem{2em}
+Which g++ version is used in autograder?
+
+\tikz [code block right] \node {
+    let add = |a: i32, b: i32| -> i32 \{ a * b \};
+    let x = 5;
+    let y = 7;
+    let result = add(x, y);
+    println!("The sum is: \{\}", result);
+};
+\hangindent-\codewidth \hangafter-\codeheight
+\Problem{2em}
+What is the output?
+~
+\Problem{2em}
+What is `i32'?
+~
+\Problem{2em}
+What is this language?
+\no C
+\no C++
+\yes Rust
+\no python
+\no Haskell
+~
+\Problem{2em}
+When did this language reach 1.0?
+\no 1975
+\no 1995
+\yes 2015
+\no 2025
+
+\clearpage
+
+\hangindent-5cm \hangafter-6
+\Problem{5em}
+Regarding string literals, what is true?
+\no It's the only way to define strings in C++.
+\no They are not stored in the executable file.
+\no They can only contain alphabetic characters.
+\yes They are concatenated even without a plus sign.
+
+\Problem{5em}
+Why C++ libraries separate header files and implementation files
+and only the header files are included?
+Select two that apply.
+\yes The implementation is already compiled.
+\yes It slows down compilation if reading both.
+\no To prevent errors when compiling implementation files.
+\no It is the user's job to implement the functions declared in headers.
+
+\Problem{5em}
+C++ is invented in
+\yes 1983
+\no 1993
+\no 2003
+\no 2013
+
+\tikz [code block right] \node {
+    int main (int argc, char *argv[]) \{
+        return 0;
+    \}
+};
+
+\hangindent-8cm \hangafter-3
+\Problem{5em} Which are correct about `main'?
+\yes A cpp file do not have to have a `main' function.
+\yes For `g++-14', `argv' may contain things like `-o' and `-Wall'.
+\no It is required to return a nonzero value when something goes wrong.
+\no It is required to return zero when the program finishes successfully.
+
+\tikz [code block right] \node {
+    g++-14 -Wall option_pricing -o op
+    ./op <<< "100 0.05 0.2 1 100"
+};
+
+\hangindent-8cm \hangafter-2
+\Problem{5em} Select the correct option.
+\no `-o' specifies the optimization level.
+\no `option_pricing' enables on the pricing option.
+\no `g++-14' refers to the compiler version announced in 2014.
+\yes `-Wall' turns on every warning provided by the compiler.
+
+\Problem{5em} Which command line create a new folder?
+\no `ls'
+\no `cat'
+\no `touch'
+\yes `mkdir'
+
+\Problem{5em} Which command is used in the jupyter notebook
+to output the cell content to a cpp file?
+\no `ls'
+\yes `cat'
+\no `touch'
+\no `mkdir'
+
+\Problem{5em}
+`T' is a type and `T A[100];' is an array.
+What is `&A[11] - &A[10]'?
+\yes 1
+\no the size of `T' in bits
+\no the size of `T' in bytes
+\no compiler error, as `(&A)' is not an array and `(&A)[11]' is meaningless
+
+\Problem{4em} The binary representation of `int16_t a = -10101' is?
+
+\tikz [code block right] \node {
+    00111111100000000000000000000000 = 1
+    01000000000000000000000000000000 = 2
+    01000000010000000000000000000000 = 3
+    01000000100000000000000000000000 = 4
+    01000000101000000000000000000000 = 5
+    01000000110000000000000000000000 = 6
+    01000000111000000000000000000000 = 7
+    01000001000000000000000000000000 = 8
+    01000001000100000000000000000000 = 9
+    01000001001000000000000000000000 = 10
+};
+
+\Problem{15em}
+What is the binary representation of $255$?
+
+\Problem{15em}
+What is the binary representation of $-0.375$?
+
+\Problem{15em}
+What is the binary representation of $2\sp{100}$?
+
+\Problem{15em}
+What is the binary representation of $2\sp{100} + 1$?
+
+\hangindent-9cm \hangafter-9
+\Problem{5em}
+What standard is that?
+\yes IEEE 754
+\no IEEE 7382
+\no IEEE 1111
+\no IEEE 1.414
+
+\Problem{5em}
+What is the `sizeof()' of this data type
+\yes 4
+\no at least 4
+\no 32
+\no at least 32
+
+\Problem{5em}
+The largest number it can represent is $3.4 \times 10\sp{\text{what}}$?
+
+\Problem{5em}
+Knowing that $\log\sb2(10) = 3.322$,
+what is the best way to define `PI' in this data type?
+\no `this_type PI = 3.14159;'
+\yes `this_type PI = 3.1415926;'
+\no `this_type PI = 3.1415926535;'
+\no `this_type PI = 3.141592653589;'
+
+\Problem{5em}
+Which are testing if a positive integer `n' is a multiple of 8?
+\yes `n % 8 == 0'
+\yes `n \& 7 == 0'
+\no `n & (n - 1) >= 8'
+\yes `n / 8 == (n + 7) / 8'
+
+\tikz [code block right] \node {
+    bool isSquare (int n) \{
+        // your code here
+        // your code here
+        return false;
+    \}
+};
+
+\hangindent-6cm \hangafter-9
+\Problem{15em}
+Finish this function that checks whether `n' is a perfect square.
+You can assume that `n' is between `0' and `1000'.
+
+\Problem{5em}
+What is \verb"'^'^'^'"?
+
+\tikz [code block right] \node {
+    float f = 1;
+    float dfdt = 0;
+    float dt = 1e-3;
+    for (float t = 0; t < 10; t += dt) \{
+        float ddfddt = f;
+        dfdt += ddfddt * dt;
+        f += dfdt * dt;
+    \}
+};
+
+\hangindent-9cm \hangafter-9
+\Problem{5em} Some numerical ODE code is presented to the right.
+What is the equation being solved?
+\no $f\sp{\prime} = f$
+\yes $f\sp{\prime\prime} = f$
+\no $f\sp{\prime} = -f$
+\no $f\sp{\prime\prime} = -f$
+
+\hangindent-9cm \hangafter-9
+\Problem{5em} Select the implied initial conditions.
+\no $f(0) = 0$
+\yes $f(0) = 1$
+\yes $f\sp\prime(0) = 0$
+\no $f\sp\prime(0) = 1$
+
+\hangindent-9cm \hangafter-2
+\Problem{5em} Select all that apply.
+\yes This is called the Euler method.
+\yes In industry, there are better methods.
+\no The loop runs for about 100000 iterations.
+\no `t' is casted into an `int' before comparing to `10'.
+
+\hangindent-9cm \hangafter-1
+\Problem{5em} Select the true statement.
+\yes `break' will break the inner-most loop.
+\no `continew' will skip to the next iteration of the inner-most loop.
+\no `fbreak' will break for-loop and ignore while-loop.
+\no `wbreak' will break while-loop and ignore for-loop.
+
+\tikz [code block right] \node {
+    int S = 0;
+    for (int i = 0; i < 20000000; i++) \{
+        for (int j = 0; j < 20000000; j++) \{
+            if (rand() % 17) \{ S++; \}
+        \}
+    \}
+};
+
+\hangindent-10cm \hangafter-9
+\Problem{5em} 
+How long does it take to run the loop above?
+\no about 1--10 microseconds
+\yes about 1--10 seconds
+\no about 1--10 days
+\no about 1--10 years
+
+\hangindent-10cm \hangafter-2
+\Problem{5em}
+When we have nested for loop like above,
+what should we do to monitor its progress?
+\no Add `cout << t' in the inner loop.
+\no Add `cout << t' in the outer loop.
+\yes print a dot for every one thousand iterations.
+\no Use a debugger to manually step through the code.
+
+\Problem{5em}
+Select the two correct declarations so that we can use `A[j][j]'
+to access the entry of a matrix `A' of size 100x200.
+\yes `int A[100][200] = \{\};'
+\no `int A = new int[100][200];'
+\no `int **A = new int[100][200];'
+\yes `int (*A)[200] = new int[100][200];'
+
+\tikz [code block right] \node {
+    #include <iostream>
+    #include <random>
+    using namespace std;
+    int main () \{
+        mt19937 rand(20251022);
+        mt19937 rane(20251022);
+        mt19937 ranf(20251022);
+        cout << rand() << rand() << rand() << endl;
+        cout << rane() % 16 << endl;
+        cout << ranf() % 16 << endl;
+        cout << rane() * ranf() % 16 << endl;
+        cout << ranf() * rane() % 16 << endl;
+    \}
+};
+
+\Problem{5em} The first line of the output is \\
+`21364248221561776959936401120'. \\
+What is the second line of output?
+
+\Problem{5em} What is the third line of output?
+
+\Problem{5em} What is the fourth line of output?
+
+\Problem{5em} What is the fifth line of output?
+
+\hangindent-11cm \hangafter-9
+\Problem{15em}
+Use `a', `b', `c', `d', `x', `add(, )', and `mul(, )'
+to express cubic polynomial $ax\sp3 + bx\sp2 + cx + d$.
+Use the minimum number of `add' and `mul'.
+
+\tikz [code block right] \node {
+    float i(float x) \{ return 10 * x + 1; \}
+    float i(int x) \{ return 10 * x + 2; \}
+    int f(float x) \{ return 10 * x + 3; \}
+    int f(int x) \{ return 10 * x + 4; \}
+};
+
+\hangindent-10cm \hangafter-9
+\Problem{5em} What is `f(f(i(5)))'?
+
+\Problem{5em} What is `f(f(i(i(f(f(i(5.f)))))))'?
+
+\tikz [code block right] \node {
+    int a = 1, b = 3, c = 2;
+    int *p = &a, *q = &b, *r = &c;
+    int **x = &p, **y = &q, **z = &r;
+    cout << **x << **y << **z << endl;
+    swap(x, y);
+    cout << **x << **y << **z << endl;
+    swap(a, c); swap(q, r);
+    cout << **x << **y << **z << endl;
+    swap(*x, *z);
+    cout << **x << **y << **y << endl;
+    swap(*p, *q); swap(**y, **z);
+    cout << **x << **y << **z << endl;
+};
+
+\hangindent-8cm \hangafter-9
+\Problem{5em}
+For the code to the right, what is the first line of output?
+
+\Problem{5em}
+What is the second line of output?
+
+\Problem{5em}
+What is the third line of output?
+
+\Problem{5em}
+What is the fourth line of output?
+
+\Problem{5em}
+What is the fourth line of output?
+
+\Problem{5em} `1*a**p***x' is?
+
+\hangindent-8cm \hangafter-1
+\Problem{5em}
+A private member function
+\no can be called by any function (even outside the class)
+\yes can be called by other member functions of the same class
+\no cannot access private member variables
+\no cannot access public member variables
+
+\tikz [code block right] \node {
+    struct Circle \{ float x, y, r; \};
+    void Shift (struct Circle& c, float x, float y)
+        \{/*your code here*/\}
+    void Rotate (struct Circle& c, float r)
+        \{/*your code here*/\}
+};
+
+\hangindent-11cm \hangafter-9
+\Problem{15em}
+Finish the function that shifts the center of the circle by `(x, y)'.
+(Note that `c' is passed by reference so you can just modify `c'.)
+
+\Problem{15em}
+Finish the function that rotates the circle by `r' radians
+(the default unit for trigonometric functions) about the origin.
+
+\tikz [code block right] \node {
+    int A[100];
+    /*computation for A*/
+    /*prepare-before*/
+    for (int i = 0; i < 100; i++) \{ /*in-loop*/ \}
+};
+
+\hangindent-11cm \hangafter-9
+\Problem{15em}
+I want to compute the maximum `maxA' of an integer array `A' of length `100'.
+What should `/*prepare-before*/' be
+
+\Problem{15em}
+What should `/*in-loop*/' be?'
+
+\Problem{15em}
+If, instead of maximum,
+I want to check if at least 5 elements of `A' are greater than `10',
+what should `/*prepare-before*/' be?
+
+\Problem{15em}
+What should `/*in-loop*/' be?
+
+\Problem{15em}
+After the loop, I should let `bool check5gt10 = '?
+
+\Problem{5em}
+C\# (where \# is pronounced `sharp' and stands for four plus signs)
+\no 1970
+\no 1980
+\no 1990
+\yes 2000
+
+\immediate\closeout\answer
+
+\clearpage
+
+\hbox{}
+
+\clearpage
+
+\section*{Computer Programming - Final Mock}
+
+Name (zh or en) \hfil Student ID
+
+\baselineskip1em plus1fil
+
+\noindent
+\input{\jobname.answer}
+
+\end{document}
+
+
+\def\four{\numexpr1 + 2\relax}
+
+\the\four 3 
+\the\numexpr1 + 2\relax3
+
+
+\ifx\a\relax
+\ifx\a\undefined
