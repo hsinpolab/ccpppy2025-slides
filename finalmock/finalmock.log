@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2023.1.4)  10 DEC 2025 15:10
+This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2023.1.4)  10 DEC 2025 15:41
  system commands enabled.
  file:line:error style messages enabled.
 **/Users/ThinBold/Git/ccpppy2025-slides/finalmock/finalmock
@@ -868,26 +868,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 375--397
 
 [3] [4
 
-] [5] [6] [7
-
-] (./finalmock.answer) [8
+] (./finalmock.answer) [5
 
 ] (./finalmock.aux))
 
 Here is how much of LuaTeX's memory you used:
- 17215 strings out of 478384
+ 17199 strings out of 478384
  100000,1977958 words of node,token memory allocated
  515 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 8 attribute, 56 glue_spec, 8 attribute_list, 2 write nodes
-   avail lists: 2:1127,3:455,4:45,5:144,6:50,7:8344,8:21,9:777,10:25,11:373
- 36697 multiletter control sequences out of 65536+600000
+   avail lists: 2:972,3:455,4:45,5:144,6:22,7:8344,8:21,9:625,10:25,11:373
+ 36681 multiletter control sequences out of 65536+600000
  64 fonts using 36192583 bytes
  100i,6n,98p,433b,641s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/ThinBold/Library/Fonts/NotoSerif-Italic.ttf></Users/ThinBold/Library/Fonts/NotoSerif-Regular.ttf></Users/ThinBold/Library/Fonts/NotoSansMono-VariableFont_wdth,wght.ttf></Users/ThinBold/Library/Fonts/NotoSansTC-Regular.otf></Users/ThinBold/Library/Fonts/NotoSerif-Bold.ttf></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on finalmock.pdf (8 pages, 134153 bytes).
+</Users/ThinBold/Library/Fonts/NotoSerif-Italic.ttf></Users/ThinBold/Library/Fonts/NotoSerif-Regular.ttf></Users/ThinBold/Library/Fonts/NotoSansMono-VariableFont_wdth,wght.ttf></Users/ThinBold/Library/Fonts/NotoSansTC-Regular.otf></Users/ThinBold/Library/Fonts/NotoSerif-Bold.ttf></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on finalmock.pdf (5 pages, 112027 bytes).
 
-PDF statistics: 91 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
+PDF statistics: 78 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 
