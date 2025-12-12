@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.4)  12 DEC 2025 15:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.4)  12 DEC 2025 15:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -454,14 +454,14 @@ e
 Here is how much of TeX's memory you used:
  12767 strings out of 476093
  265373 string characters out of 5791586
- 1957793 words of memory out of 5000000
+ 1958793 words of memory out of 5000000
  32968 multiletter control sequences out of 15000+600000
  512287 words of font info for 32 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 100i,6n,104p,400b,788s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 100i,6n,104p,400b,787s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmr10.pfb>
-Output written on ice.pdf (1 page, 76450 bytes).
+Output written on ice.pdf (1 page, 77176 bytes).
 PDF statistics:
  16 PDF objects out of 1000 (max. 8388607)
  10 compressed objects within 1 object stream
