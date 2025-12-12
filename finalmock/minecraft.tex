@@ -1,0 +1,44 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX program = pdflatex
+\documentclass[border = 1cm, tikz]{standalone}
+	\usepackage{tikz-3dplot}
+\begin{document}
+	\makeatletter\let\oldpointxyz\pgfpointxyz
+	\def\pgfpointxyz#1#2#3{
+		\oldpointxyz{#1-\camerax}{#2-\cameray}{#3-\cameraz}
+		\pgfmathsetmacro\depth{\rcarot*\pgftemp@x+\rcbrot*\pgftemp@y+\rccrot*\pgftemp@z}
+		\pgfmathsetlength\pgf@x{\pgf@x*\cameras/(\camerad-\depth)}
+		\pgfmathsetlength\pgf@y{\pgf@y*\cameras/(\camerad-\depth)}
+	}\makeatother
+	\tdplotsetmaincoords{50}{120}
+	\def\camerax{0}\def\cameray{0}\def\cameraz{8}\def\camerad{40}\def\cameras{20}
+	\begin{tikzpicture}[tdplot_main_coords]
+		\def\block(#1,#2,#3)[#4,#5,#6];{
+			\pgfmathsetmacro\a{#1}\pgfmathsetmacro\A{\a+1}
+			\pgfmathsetmacro\b{#2}\pgfmathsetmacro\B{\b+1}
+			\pgfmathsetmacro\c{#3}\pgfmathsetmacro\C{\c+1}
+			\pgfmathsetmacro\rnd{rnd*10}
+			\fill[.!\rnd!#4](\a,\b,\C)--(\A,\b,\C)--(\A,\B,\C)--(\a,\B,\C)--cycle;
+			\fill[.!\rnd!#5](\A,\b,\c)--(\A,\B,\c)--(\A,\B,\C)--(\A,\b,\C)--cycle;
+			\fill[.!\rnd!#6](\a,\B,\c)--(\a,\B,\C)--(\A,\B,\C)--(\A,\B,\c)--cycle;
+		}
+		\colorlet{g1}{green!80!.}\colorlet{d1}{brown!80!.}
+		\colorlet{g2}{green!65!.}\colorlet{d2}{brown!65!.}
+		\colorlet{g3}{green!50!.}\colorlet{d3}{brown!50!.}
+		\def\grass(#1,#2,#3){\block(#1,#2,#3)[g1,g2,g3]}
+		\def\dirt(#1,#2,#3){\block(#1,#2,#3)[d1,d2,d3]}
+		\foreach \x in {-15, ..., 15}{
+			\foreach \y in {-15, ..., 15}{
+				\pgfmathtruncatemacro\radi{sqrt((\x)^2 + (\y)^2)}
+				\ifdim\radi pt < 15pt
+					\pgfmathtruncatemacro\Z{sin(\x*31-\y*19) * 3.5 +
+					                        sin(\x*17+\y*26) * 2 + 5.5}
+					\dirt(\x,\y,\Z);
+					\dirt(\x,\y,\Z+1);
+					\grass(\x,\y,\Z+2);
+				\fi
+			}
+		}
+	\end{tikzpicture}
+\end{document}
+
