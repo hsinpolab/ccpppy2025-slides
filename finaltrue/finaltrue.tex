@@ -1,0 +1,619 @@
+% !TEX encoding = UTF-8
+% !TEX program = lualatex
+
+\documentclass[a4paper]{article}
+
+\usepackage[left=1.5cm, right=1.5cm, top=1cm, bottom=2cm]{geometry}
+
+\usepackage{mathtools, amssymb}
+
+\usepackage{fontspec}
+    \setmainfont{Noto Serif}
+    \setsansfont{Noto Sans TC}
+    \setmonofont{Noto Sans Mono}
+
+\usepackage{fancyvrb, tikz}
+
+\newcounter p \newcounter c  \def\anssheet{\noindent}
+\def\Problem#1{\ifhmode\\[1em]\fi\stepcounter{p}[\thep]
+\xdef\anssheet{\anssheet\hbox to#1{[\thep]\hss}\hskip0pt plus#1}}
+\def\choice{\stepcounter c\ifnum\value c=27\setcounter c1\fi(\Alph c) }
+\fvset{gobble=4}
+\def\RightVerbatim{%
+    \begin{tikzpicture} [overlay, xshift=18cm]
+        \node (V) [below left, fill=gray!10] {\BUseVerbatim{RightCode}};
+        \pgfpointdiff{\pgfpointanchor{V}{south west}}
+        {\pgfpointanchor{V}{north east}}
+        \pgfgetlastxy\verbwidth\verbheight
+        \xdef\verbwidth{\dimexpr\verbwidth+12pt}
+        \pgfmathtruncatemacro\verbheight{\verbheight/12 + 1}
+        \xdef\verbheight{\verbheight}
+    \end{tikzpicture}%
+    \hangindent-\verbwidth \hangafter-\verbheight
+}
+
+\begin{document}
+
+\parskip1em
+\parindent0pt
+\rightskip0pt plus2em
+
+\section*{Computer Programming - Final}
+
+\sffamily
+
+考試時間 Test time 15:50 pm to 18:20 pm; 2.5 hours.
+以投影時鐘為準 Using the projected clock as official time.
+在答案卷上作答 Answer on the answer sheet.
+每題一分 One point per problem.
+全對才給分 No partial credit.
+不倒扣 No penalty for wrong answers.
+禁止外部資源（比照學測、分科） No external resources, like TOEFL.
+
+\rmfamily
+
+\Problem{3em}
+    In C++, \verb|int|, \verb|float| are data types; they are like nouns.
+    And \verb|const| is like an adjective which describes a data type.
+    In C++, what does \verb|const int x = 10;| mean?
+    \choice \verb|x| is a constructor of an integer.
+    \choice \verb|x| is an integer that is constantly changing.
+    \choice \verb|x|'s value cannot be changed after initialization.
+    \choice \verb|x| is can only be used in functions declared with \verb|const|.
+
+\Problem{3em}
+    In C++, there are left values and right values.
+    Left values are things that appears on the left side of \verb|=|:
+    they have memory addresses and can be read and written.
+    Right values are things that can only be on the right side of \verb|=|:
+    they are mathematical values without a home in memory.
+    Which of the following is a left value?
+    \choice the result of \verb|3 + 4|
+    \choice the literal number \verb|42|
+    \choice an entry of array \verb|A[3]|
+    \choice a member variable of a class \verb|obj.var|
+    \choice the return value of a function \verb|int fibo(int n);|
+    
+
+\Problem{3em}
+    What does adding \verb|const| after a member function declaration guarantee?
+    \choice The function is kept in the memory until the program ends.
+    \choice the argument of the function must themselves be \verb|const|.
+    \choice the function promise that it will not modify member variables.
+    \choice The function acts directly on memory and returns a constant value.
+
+\Problem{3em}
+    \verb|std::vector<t>| is actually an array \verb|T[???]| under the hood.
+    The size of the array is 1 in the beginning,
+    and every time the array is full,
+    a new array with twice the size is created,
+    and the old elements are copied to the new array.
+    How much time does one \verb|push_back| of a \verb|vector<int>| need,
+    where $n$ is the current size?
+    Select all that apply.
+    \choice $\Theta(1)$ every time, guaranteed
+    \choice Sometimes $\Theta(1)$, but the worst case is $\Theta(\log n)$
+    \choice Sometimes $\Theta(1)$, but the worst case is $\Theta(n)$
+    \choice $\Theta(1)$ on average
+    \choice $\Theta(\log n)$ on average
+    \choice $\Theta(n)$ on average
+
+\Problem{3em}
+    In C++, templates are tools that allow users to write, say,
+    multiple structures and functions with only one copy of codes.
+    For instance \verb|pair<int, float>| and \verb|pair<string, string>|
+    are two different types, but we only define \verb|pair| once.
+    Which statement about templates is correct?
+    \choice templates are instantiated at runtime
+    \choice templates cannot be defined in header files
+    \choice templates must be explicitly instantiated for built-in types
+    \choice templates are instantiated only when used with specific types
+    \choice templates must be explicitly instantiated for user-defined classes
+
+\Problem{3em}
+    What is the purpose of operator overloading?
+    \choice To provide faster implementations of operators over existing implementations.
+    \choice To reduce the memory usage by reusing existing operators.
+    \choice To allow operators to work with different data types
+
+\Problem{3em}
+    A data type is said to be \emph{fundamental} if it behaves nicely.
+    Here, \emph{behaves nicely} can mean different things,
+    but the most significant property is that
+    when we say \verb|FT y = x;|, we can copy the content of \verb|x|
+    to \verb|y| by something like \verb|memcpy(&y, &x, sizeof(FT));|.
+    This is really nice because
+    (i) we do not need to jump between pointers
+    to get the content of \verb|x|, and
+    (ii) CPU usually optimizes \verb|memcpy| very well.
+    Which of the following are fundamental data types?
+    \choice char
+    \choice int
+    \choice float
+    \choice string
+    \choice \verb|pair<char, int>|
+    \choice \verb|array<float, 300>|
+    \choice \verb|tuple<string, string, string>|
+
+\begin{SaveVerbatim}{RightCode}
+    int* p_square(int a) {
+        int b = a*a; 
+        return &b;
+    }
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{3em}
+    To the right you can see that \verb|p_square|
+    returns a pointer to the memory address of \verb|b|.
+    But \verb|b| will disappear after the function ends.
+    So the returned pointer is pointing to something no longer existing.
+    What is the name we give to this kind of problem?
+    \choice memory leak
+    \choice heap overflow
+    \choice dangling pointer
+    \choice segmentation fault
+
+\Problem{3em}
+    We know from experience that \verb|string| does not have a fixed length.
+    So it probably uses \verb|new| and \verb|delete|
+    to control memory dynamically.
+    It also behaves like an array so \verb|s[2]|
+    is the third character of \verb|s|.
+    Usually when we have two arrays \verb|int A[100], B[100];|
+    and we want to copy \verb|A| to \verb|B|,
+    we cannot say \verb|B = A;| because arrays do not support assignment.
+    And even if in languages that allow \verb|B = A;|,
+    it usually only copies the pointer, not the contents.
+    But in C++, we can say \verb|string B = A;| and it works as expected.
+    This behavior is called
+    \choice lazy copy
+    \choice deep copy
+    \choice shallow copy
+    \choice pointer copy
+
+\Problem{3em}
+    How does C++ implement that?
+    \choice through operator overloading
+    \choice through function overloading
+    \choice through multiple inheritance
+    \choice through template specialization
+
+\begin{SaveVerbatim}{RightCode}
+    struct Rat {
+        int age;
+        string name;
+        ...
+        void setAge(int a) { ... }
+    }
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{3em}
+    The accessability of \verb|age| is
+    \choice public
+    \choice private
+    \choice projected
+    \choice protected
+    \choice prohibited
+\Problem{3em}
+    Regarding methods in a \verb|struct|, what is correct?
+    \choice only struct can have methods; class cannot
+    \choice only class can have methods; struct cannot
+    \choice both struct and class can have methods
+    \choice neither struct nor class can have methods without \verb|public:|.
+
+\Problem{3em}
+    In concurrent programming, what is a data race?
+    \choice Multiple threads write to the same memory without coordination.
+    \choice Multiple threads compute the best-fit linear regression on the same data.
+    \choice Multiple threads compete for allocating memory for their own local variables.
+    \choice One thread writes to the end of a file while another reads from the beginning of that file.
+    \choice Threads try to finish their computation as fast as possible because the last one needs to summarize the results.
+
+\Problem{3em}
+    Which of the following are common mistakes
+    people make programming that produces wrong results?
+    \choice Lock a variable but forget to unlock it
+    \choice Forget to lock a shared variable before reading it
+    \choice Use too many threads and cause excessive context switching
+    \choice Allocate memory with \verb|new| but forget to \verb|delete| it later
+
+\Problem{3em}
+    In the supplymentary material
+    \verb|https://en.algorithmica.org/hpc/algorithms/matmul/|,
+    which of the following are good optimizations
+    for matrix multiplication?
+    Select all that apply.
+    \choice Unrolling loops
+    \choice Cache sub-matrices
+    \choice Using multiple threads
+    \choice Single-data multiple-operation
+    \choice Using \verb|std::vector| instead of raw arrays
+
+\Problem{3em}
+    What is the recommended way to check if \verb|x| is \verb|None|
+    in Python?
+    \choice \verb|if x:|
+    \choice \verb|if x is None:|
+    \choice \verb|if x == None:|
+    \choice \verb|if None == x:|
+
+\begin{SaveVerbatim}{RightCode}
+    def f(l = [1,2,3]):
+        l.append(l[-1]+1)
+        print(l)
+    f()
+    f()
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{3em}
+    The code to the right outputs 
+    \verb|[1, 2, 3, 4]| and then \verb|[1, 2, 3, 4, 5]|.
+    Why?
+    Select everything that contributes to this result.
+    \choice Because append modifies the list in place
+    \choice Because the function secretly calls itself recursively.
+    \choice Because the assignment \verb|list1 = list2| is a shallow copy.
+    \choice Because the default argument is created once at function definition time and reused every call.
+    \choice Because Python evaluates default arguments every time the function is executed, adding one extra element on each call.
+\Problem{3em}
+    According to PEP 8, what is the recommended indentation level in Python code?
+    \choice one tab per indentation level
+    \choice 2 spaces per indentation level
+    \choice 4 spaces per indentation level
+    \choice any number of spaces or tabs as long as it is consistent within a project
+
+\begin{SaveVerbatim}{RightCode}
+    UnknownFunction :: String -> Int
+    UnknownFunction "" = 0
+    UnknownFunction (first:rest) =
+    let (_, _, best) = foldl' step (first, 1, 1) rest
+    in best
+    where
+        step :: (Char, Int, Int) -> Char -> (Char, Int, Int)
+        step (prev_ch, curr_len, best) ch
+        | ch == prev_ch =
+            let curr_len' = curr_len + 1
+                best' = max best curr_len'
+            in (prev_ch, curr_len', best')
+        | otherwise = (ch, 1, best)
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{3em}
+    What language is this?
+    \choice Go
+    \choice Rust
+    \choice Java
+    \choice Haskell
+\Problem{3em}
+    What is the purpose of this program???
+    \choice Compute fibonacci numbers.
+    \choice Check if a string is a palindrome
+    \choice Compute the longest repeated substring
+    \choice Find the greatest common divisor of two numbers
+    \choice Count the frequency of each character in a string
+    \choice Generate all permutations of the characters of a string
+\Problem{3em}
+    PEP 8's comment on line-length is as follows
+    \emph{The default wrapping in most tools disrupts the visual structure of
+    the code, making it more difficult to understand. The limits are chosen
+    to avoid wrapping in editors with the window width set to 80, even if the
+    tool places a marker glyph in the final column when wrapping lines. Some
+    web based tools may not offer dynamic line wrapping at all.}
+    Beyond PEP 8, what is the root cause of limiting line width
+    across different programming languages and communities?
+    \choice Old screens only support 80 columns.
+    \choice Human eyes have difficulty reading long lines.
+    \choice Long lines are harder to parse by interpreters/compilers.
+    \choice Old internet protocol only support 88 characters per packet.
+    \choice Some editors and tools do not support dynamic line wrapping.
+
+\Problem{3em}
+    According to PEP 8, which naming conventions are recommended?
+    \choice \verb|UPPERCASE| for classes
+    \choice \verb|UPPERCASE| for constants
+    \choice \verb|UPPERCASE| for functions
+    \choice \verb|UPPERCASE| for variables
+    \choice \verb|lowercase| for classes
+    \choice \verb|lowercase| for constants
+    \choice \verb|lowercase| for functions
+    \choice \verb|lowercase| for variables
+    \choice \verb|PascalCase| for classes
+    \choice \verb|PascalCase| for constants
+    \choice \verb|PascalCase| for functions
+    \choice \verb|PascalCase| for variables
+
+\Problem{3em}
+    Which line are compliant with PEP 8 whitespace rules?
+    \choice \verb|x=i+1;|
+    \choice \verb|x = i+1;|
+    \choice \verb|x = i + 1;|
+    \choice \verb|func(a,b)|
+    \choice \verb|func (a,b)|
+    \choice \verb|{dog:2}|
+    \choice \verb|{dog: 2}|
+    \choice \verb|{dog : 2}|
+
+\begin{SaveVerbatim}{RightCode}
+    \def\X{3.14159}
+    \Remember\X
+    % some calculation that might change \X
+    \Recall\X
+    % now \X is 3.14159 again
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{3em}
+    \verb|\X| is going to be a number.
+    How do I define \verb|\Remember| so that
+    the value of \verb|\X| is saved, and later restored?
+    Please do not use 3.14159 directly;
+    this is just an example.
+    We want to macro to work for any value of \verb|\X|.
+\Problem{6em}
+    Throughout the entire semester,
+    I use the terminal command to compile lecture examples.
+    \verb|???-?? -!!!=!!!!! -@a@@ -@e@@@a -@@e@a@@i@ -@@@a@o@ -@@o@@e@@io@ hello.cpp -o h && ./h|.
+    What are the question marks?
+
+\Problem{6em}
+    What are the exclamation marks?
+
+\Problem{12em}
+    What are the at signs? One point per two options.
+
+\Problem{6em}
+    For the homework \verb|honai|,
+    the size of the tower is a \verb|cin|, not a command line argument.
+    So naturally, TA needs to launch the program
+    and press \verb|9| and then \verb|enter|.
+    Or does he?
+    In fact, in the auto-grader, \verb|9| is part of the command line.
+    What is that line?
+
+\Problem{6em}
+    How to show first 20 line of \verb|animal.cpp| in command line.
+
+\begin{SaveVerbatim}{RightCode}
+    a = [1, 2, 3, 4]
+    b = [10, 20, 30]
+    c = [100, 200, 300, 400, 500]
+    result = []
+    for x, y, z in zip(a, b, c):
+        result.append(x + y + z)
+    print(result)
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{6em}
+    What does the code to the right produce?
+\Problem{6em}
+    Do you remember the baby step giant step algorithm from the homework?
+    We recommend BSGS to solve the following equation:
+    $29^n \mathbin\% 103 = 36$
+\Problem{6em}
+    Do you remember RSA from the homework?
+    Given public key $(n, e) = (97097, 7)$,
+    the plaintext is $m = 89$,
+    what is the ciphertext $c$?
+
+\Problem{6em}
+    What is the private key $(p, q, d)$?
+
+\Problem{6em}
+    What is the counterpart of \verb|std::map| in Python?
+
+\Problem{6em}
+    With \verb|numpy| and
+    \verb|A,B=np.meshgrid(np.asarray([1,2,3]),np.asarray([4,5]))|,
+    what is \verb|A| and \verb|B|.
+
+\begin{SaveVerbatim}{RightCode}
+    reduce(lambda x, y:
+        min(
+            n for n in range(1, x * y + 1)
+            if n % x == 0 and n % y == 0
+        ),
+        range(1, 10)
+    )
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{6em}
+    What does the code to the right produce?
+\Problem{6em}
+    Sort these by their invention year:
+    C, C++, Python, SageMath, TeX, LaTeX.
+    You only need to write the initial letters,
+    and I will assume the second C is C++.
+
+\subsection*{Long answer questions}
+    The following questions require long answers.
+    If the space is not enough, do not Fermat.
+    Write your answer somewhere else and tell me where it is,
+    like the expiry date of the drinks sold in convenience stores.
+
+\Problem{17.9cm}
+    Write a C++ code that prints the following sentence to the screen:
+    \emph{I do not cheat in this exam and, when the exam is over,
+    I will take a photo of my answer sheet and upload it to ntu cool.} 
+
+\begin{SaveVerbatim}{RightCode}
+    template<typename T>
+    T sum(T one) { return one; }
+    template<typename T, typename ... TT>
+    T sum(T first, TT ... rest)
+    { return first + sum(rest); }
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{17.9cm}
+To the right is a usage of variadic template.
+Use the similar style to define \verb|apply| so that
+\verb|apply(x, f, g, h)| produces \verb|h(g(f(x)))|.
+
+\begin{SaveVerbatim}{RightCode}
+    int OD(uint8_t a, uint8_t b) {
+        ...
+        return o;
+    }
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{17.9cm}
+    We all know that modern picture formats use RGB colors of 8 bits each.
+    That is, the red component goes from $0$ to $255$,
+    and so do the green and blue components.
+    Therefore, each picture can use $256^3 = 16,777,216$ colors.
+    However, some screens may support fewer colors.
+    Does not mean that they cannot display pictures with more colors?
+    Actually they can, by using a technique called ordered dithering.
+    \[
+        \includegraphics[height=10cm]{david.png}
+        \includegraphics[height=10cm]{david2.png}
+    \]
+    For simplicity,
+    let's say that our gray-scale picture uses $5$ colors:
+    from $0$ (pitch black) to $4$ (blinding white).
+    and our screen can only show two colors, $0$ and $4$.
+    Consider this matrix
+    \[\begin{bmatrix}
+        0 & 2 \\ 3 & 1
+    \end{bmatrix}\]
+    and till it repeatedly to cover the entire picture.
+    \[\begin{bmatrix}
+        0 & 2 & 0 & 2 & 0 & 2 & \cdots \\
+        3 & 1 & 3 & 1 & 3 & 1 & \cdots \\
+        0 & 2 & 0 & 2 & 0 & 2 & \cdots \\
+        3 & 1 & 3 & 1 & 3 & 1 & \cdots \\
+        0 & 2 & 0 & 2 & 0 & 2 & \cdots \\
+        3 & 1 & 3 & 1 & 3 & 1 & \cdots \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots &
+    \end{bmatrix}\]
+    Now a gary-scale value $v \in \{0, 1, 2, 3, 4\}$
+    will be displayed as white if it is greater than
+    the corresponding value in the above matrix, and black otherwise.
+    For if we have $17$ levels of gray-scale,
+    we can use a $4\times 4$ matrix like this:
+    \[\begin{bmatrix}
+        0 & 8 & 2 & 10 \\
+        12 & 4 & 14 & 6 \\
+        3 & 11 & 1 & 9 \\
+        15 & 7 & 13 & 5
+    \end{bmatrix}\]
+    Finish the C++ code that helps generate
+    the $16 \times 16$ matrix for $257$ levels of gray-scale.
+
+\begin{SaveVerbatim}{RightCode}
+    int TM(uint16_t a) {
+        ...
+        return b;
+    }
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{17.9cm}
+    The Thur--Morse sequence is defined as: $t_{2n} = t_n$, and
+    $t_{2n+1} = 1 - t_n$ with initial term $t_0 = 0$.
+    Using the Thue--Morse sequence for two-choice scheduling is fair
+    because every prefix is nearly perfectly balanced:
+    the counts of 0s and 1s differ by at most 1,
+    and 0s take a lead about $50\%$ of the time.
+    It also avoids long streaks (no 000 or 111),
+    preventing one side from getting several consecutive turns,
+    which reduces perceived bias
+    while remaining deterministic and simple to generate.
+    Finish the function \verb|TM|.
+
+\begin{SaveVerbatim}{RightCode}
+    template<class Iter, class Compare>
+    void sort(Iter first, Iter last, Compare comp) {...}
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{17.9cm}
+    To the right is a generic sort function.
+    To use it, I need to write
+    \verb|sort(Container.begin(), Container.end(), compare)|.
+    But I don't want to repeat \verb|Container| two times.
+    Write a \verb|sort| that takes only \verb|Container| and \verb|compare|
+
+\begin{SaveVerbatim}{RightCode}
+    sort(VI.begin(), VI.end(),
+    [](auto a, auto b) {
+        ???
+    });
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{17.9cm}
+    in \verb|sort|, the function \verb|compare(a, b)| should return
+    \verb|true| if the first argument should be before the second argument.
+    Implement a compare function that sorts \verb|vector<int16_t> VI|
+    using the following order:
+    take the binary representation of an \verb|int16_t|,
+    reverse it, and compare the reversed representation.
+    In other words, \verb|11| will be treated as if
+    it is \verb|1101 0000 0000 0000|.
+
+\begin{SaveVerbatim}{RightCode}
+    class SWOT {
+        public:
+        string S, W, O, T;
+    }
+    ostream &operator<<(ostream &dcard, SWOT ntuee) {
+        ...
+        return dcard;
+    }
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{17.9cm}
+    In a business class we learn about the SWOT analysis.
+    SWOT stands for strengths, weaknesses, opportunities, and threats.
+    It is usually represented in a $2\times 2$ matrix
+    in this order $[^S_O{}^W_T]$.
+    Implementing the printing operator for \verb|SWOT| so that
+    each column's width is the maximum width of the two entries
+    plus two padding spaces, and columns are separated by vertical bars.
+    The following is an example output:
+    \begin{Verbatim}[gobble=8]
+        | Many buildings and labs | A lot of homeworks               |
+        | AI explosion            | Nanyang Technological University |
+    \end{Verbatim}
+    Hint: the length of a \verb|string| is \verb|.size()|.
+
+\begin{SaveVerbatim}{RightCode}
+    while True:
+        plant(???)
+        use_item(???, 1024)
+        while get_entity_type() != ???:
+            ### move along left wall ###
+        harvest()
+\end{SaveVerbatim}
+\RightVerbatim
+\Problem{17.9cm}
+    In the video game Farmer Was Replaced,
+    I use this code to find treasures in a maze.
+    What are the question marks?
+\Problem{17.9cm}
+    Finish the code that moves along the left wall.
+\Problem{17.9cm}
+    \verb|change_hat(Hats.Dinosaur_Hat)| enters the dinosaur mode,
+    and \verb|change_hat(Hats.Straw_Hat)| exits it.
+    Write a code that can fill the entire 32-by-32 farm with dinosaur body.
+\Problem{17.9cm}
+    To get one more point, improve your dinosaur code
+    so that it restarts automatically when the farm is full.
+
+\Problem{17.9cm}
+    This exam paper uses
+    \verb|\usepackage[???]{geometry}|.
+    All numbers are from the E6 preferred number series.
+
+\Problem{17.9cm}
+    What does \verb|plot(x^2 * sin(1/x), -1, 1)| produce in SageMath?
+    This function is one of the classic example of functions
+    that is differentiable everywhere but not continuously differentiable.
+
+\clearpage\ifodd\thepage\else~\clearpage\fi
+
+\section*{Computer Programming - Final}
+
+Name (zh or en) \hfil Student ID
+
+\baselineskip1em plus1fil
+
+\anssheet
+
+\end{document}
